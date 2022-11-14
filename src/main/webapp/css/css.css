@@ -1,0 +1,31 @@
+.container-wrap {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    ". . . . ."
+    ". . formulario . ."
+    ". . formulario . ."
+    ". . . . ."
+    ". . . . .";
+}
+
+.formulario {
+    display: grid;
+    grid-area: formulario;
+    text-align: center;
+}
+
+fieldset {
+    border-style: groove;
+    border-radius: 50px;
+    background-color: #669900;
+}
+
+label, input, button, h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input {
+    width: 80%;
+}
