@@ -10,5 +10,8 @@
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
   <property name="hibernate.connection.username">Gonzalez</property>
+  <mapping class="com.jacaranda.Model.Usuario"/>
+  <mapping class="com.jacaranda.Model.Material"/>
+  <mapping class="com.jacaranda.Model.Categoria"/>
  </session-factory>
 </hibernate-configuration>
