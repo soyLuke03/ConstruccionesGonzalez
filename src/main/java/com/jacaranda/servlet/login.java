@@ -41,17 +41,17 @@ public class login extends HttpServlet {
 		try {
 			DaoUser daoUser = new DaoUser();
 	
-			String password = String.valueOf(request.getParameter("password"));
-			String passEncrypt = DigestUtils.md5Hex(password);
-	
 			String usuario = String.valueOf(request.getParameter("usuario"));
 
-			if(daoUser.userIsValid(usuario, passEncrypt)){
+			if(daoUser.userIsValid(usuario)){
 				HttpSession sesion = request.getSession();
 				sesion.setAttribute("login","True");
 				sesion.setAttribute("usuario",usuario);
 				
-				response.sendRedirect(request.getContextPath() + "listaMateriales");
+				response.sendRedirect("listaMateriales");
+			}
+			else {
+				response.sendRedirect("Error.jsp");
 			}
 		} catch (Exception e) {
 			response.sendRedirect("Error.jsp");

@@ -20,7 +20,7 @@ public class DaoMaterial {
 	
 	
 	public List<Material> getMateriales() throws Exception {
-		Query<Material> query = session.createQuery("SELECT it FROM materiales it");
+		Query<Material> query = session.createQuery("SELECT it FROM com.jacaranda.Dao.Model.Material it");
 		List<Material> resultado = query.getResultList();
 		return resultado;
 	}

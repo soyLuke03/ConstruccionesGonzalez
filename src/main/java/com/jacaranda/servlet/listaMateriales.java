@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.jacaranda.Dao.DaoCategoria;
 import com.jacaranda.Dao.DaoMaterial;
+import com.jacaranda.Model.Categoria;
 import com.jacaranda.Model.Material;
 
 /**
@@ -34,17 +37,10 @@ public class listaMateriales extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			HttpSession sesion = request.getSession();
-			sesion.getAttribute("usuario");
+
 				
-			DaoMaterial daoMaterial = new DaoMaterial();
-			List<Material> materiales = null;
-			try {
-				materiales = daoMaterial.getMateriales();
-			} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-			}
+			DaoCategoria daoCategoria = new DaoCategoria();
+			List<Categoria> categorias = daoCategoria.getCategorias();
 			
 			try(PrintWriter out = response.getWriter()) {
 				out.println("<!DOCTYPE html>");
@@ -64,14 +60,15 @@ public class listaMateriales extends HttpServlet {
 				out.println("<th>cod_categoria</th>");
 				
 				
-				
-					for(Material material : materiales) {
+				for(Categoria categoria: categorias) {
+					for(Material material: categoria.getMateriales()) {
 						out.println("<tr><td>"+ material.getCodigo() +"</td>");
 						out.println("<td>"+ material.getNombre() +"</td>");
 						out.println("<td>"+ material.getDescripcion() +"</td>");
 						out.println("<td>"+ material.getPrecio() +"</td>");
-						out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");
+						out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");						
 					}
+				}
 				
 				
 				

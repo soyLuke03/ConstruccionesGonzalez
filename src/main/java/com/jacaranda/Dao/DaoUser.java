@@ -11,15 +11,14 @@ public class DaoUser {
 
 	
 	
-	public boolean userIsValid(String name, String pass) {
+	public boolean userIsValid(String name) {
 	    boolean valid = false;
 		try {
-		    Session session = ConnectorDB.getSession();
-		    Query<Usuario> query = session.createQuery("SELECT p FROM com.jacaranda.Model.Usuario p WHERE usuario='" + name + "'and password='"+pass+"'",Usuario.class);
-		    if(!query.getResultList().isEmpty()) {
-		        valid = true;
-		    
-		    }
+			Session session = ConnectorDB.getSession();
+			Usuario user = (Usuario) session.get(Usuario.class, name);
+			if(user != null) {
+				valid = true;
+			}
 		}catch(Exception e) {
 		    System.out.println(e.getMessage());
 		}

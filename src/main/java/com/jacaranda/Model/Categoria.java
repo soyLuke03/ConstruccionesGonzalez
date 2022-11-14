@@ -43,6 +43,14 @@ public class Categoria {
 		this.codigo = codigo;
 	}
 
+	
+	public List<Material> getMateriales() {
+		return materiales;
+	}
+
+	public void setMateriales(List<Material> materiales) {
+		this.materiales = materiales;
+	}
 	public String getNombre() {
 		return nombre;
 	}
