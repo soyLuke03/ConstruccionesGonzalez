@@ -37,35 +37,45 @@ public class listaMateriales extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-
+			HttpSession session = request.getSession();
+			String userName = (String) session.getAttribute("usuario");
+			String login = (String) session.getAttribute("login");
 				
-			DaoCategoria daoCategoria = new DaoCategoria();
-			List<Categoria> categorias = daoCategoria.getCategorias();
 			
-			try(PrintWriter out = response.getWriter()) {
-				out.println("<!DOCTYPE html>");
-				out.println("<html>");
-				out.println("<head>");
+			if(userName != null && login !=null) {
 				
-				out.println("<link rel=\"stylesheet\" href=\"./css/style.css\">\r\n");
+				DaoCategoria daoCategoria = new DaoCategoria();
+				List<Categoria> categorias = daoCategoria.getCategorias();
 				
-				out.println("</head>");
-				out.println("<body>");
-				
-				out.println("<div class'header-container'>");
-				out.println("</div>");
-				
-				
-				out.println("<div class'container-wrap'>");
+				try(PrintWriter out = response.getWriter()) {
+					out.println("<!DOCTYPE html>");
+					out.println("<html>");
+					out.println("<head>");
+					
+					out.println("<link rel=\"stylesheet\" href=\"./css/style.css\">\r\n");
+					
+					out.println("</head>");
+					out.println("<body>");
+					
+					out.println("<div class'header-container'>");
+					out.println("<img src=''></img>");
+					out.println("<h1 class='titulo'>Welcome to our shop</h1>");
+					out.println("<button>User"+ userName +"</button>");
+					out.println("</>");
+					
+					out.println("</div>");
+					
+					
+					out.println("<div class'container-wrap'>");
 					out.println("<h1>Lista de Materiales</h1>");
 					out.println("<table align='center'>");
 					
 					
-						out.println("<th>codigo</th>");
-						out.println("<th>nombre</th>");
-						out.println("<th>descripcion</th>");
-						out.println("<th>precio</th>");
-						out.println("<th>cod_categoria</th>");
+					out.println("<th>codigo</th>");
+					out.println("<th>nombre</th>");
+					out.println("<th>descripcion</th>");
+					out.println("<th>precio</th>");
+					out.println("<th>cod_categoria</th>");
 					//Listado de materiales con su codigo de categoria
 					for(Categoria categoria: categorias) {
 						for(Material material: categoria.getMateriales()) {
@@ -80,13 +90,19 @@ public class listaMateriales extends HttpServlet {
 					
 					
 					out.println("</table>");
-				out.println("</div>");
+					out.println("</div>");
+					
+					out.println("</body>");
+					out.println("</html>");
+				} 
+				catch (Exception e) {
+					e.printStackTrace();
+					response.sendRedirect("Error.jsp");
+				}
+				}
 				
-				out.println("</body>");
-				out.println("</html>");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		catch (Exception e) {
 			response.sendRedirect("Error.jsp");
 		}
 		

@@ -16,12 +16,14 @@ public class DaoUser {
 		Session session = ConnectorDB.getSession();
 		Usuario user = (Usuario) session.get(Usuario.class, usuario);
 		
-		if(user != null) {
+		if(user != null && password.equals(user.getPassword())) {
 			System.out.println("true");
 			valid = true;
 		}
 		return valid;
 	}
+	
+	
 	
 	
 	public boolean addUsuario(Usuario usuario) {
