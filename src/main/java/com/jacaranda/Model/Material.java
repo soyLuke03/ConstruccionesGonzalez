@@ -16,7 +16,11 @@ public class Material {
 	private String descripcion;
 	private Integer precio;
 	@ManyToOne
-	@JoinColumn private Categoria categoria;
+	@JoinColumn private Categoria cod_categoria;
+	
+	public Material() {
+		
+	}
 	
 	public Material(Integer codigo, String nombre, String descripcion, Integer precio, Categoria cod_categoria) {
 		super();
@@ -24,7 +28,7 @@ public class Material {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
-		this.categoria = cod_categoria;
+		this.cod_categoria = cod_categoria;
 	}
 	
 	public Material(Integer codigo, String nombre, String descripcion, Integer precio) {
@@ -45,7 +49,7 @@ public class Material {
 	//Metodos autogenerados
 	@Override
 	public int hashCode() {
-		return Objects.hash(descripcion, categoria, codigo, nombre, precio);
+		return Objects.hash(descripcion, cod_categoria, codigo, nombre, precio);
 	}
 
 
@@ -90,17 +94,17 @@ public class Material {
 
 
 	public Categoria getCategoria() {
-		return categoria;
+		return cod_categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+		this.cod_categoria = categoria;
 	}
 
 	@Override
 	public String toString() {
 		return "Material [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", cod_categoria=" + categoria + "]";
+				+ ", cod_categoria=" + cod_categoria + "]";
 	}
 
 
@@ -113,7 +117,7 @@ public class Material {
 		if (getClass() != obj.getClass())
 			return false;
 		Material other = (Material) obj;
-		return Objects.equals(descripcion, other.descripcion) && Objects.equals(categoria, other.categoria)
+		return Objects.equals(descripcion, other.descripcion) && Objects.equals(cod_categoria, other.cod_categoria)
 				&& Objects.equals(codigo, other.codigo) && Objects.equals(nombre, other.nombre)
 				&& Objects.equals(precio, other.precio);
 	}

@@ -15,8 +15,12 @@ public class Categoria {
 	private Integer codigo;
 	private String nombre;
 	private String descripcion;
-	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "cod_categoria", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Material> materiales = new ArrayList<>();
+	
+	public Categoria() {
+		
+	}
 	
 	public Categoria(Integer codigo, String nombre, String descripcion) {
 		super();
@@ -90,6 +94,15 @@ public class Categoria {
 		return "Categoria [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
 	}
 	
+	
+	public void addMaterial(Material material) {
+		materiales.add(material);
+		material.setCategoria(this);
+	}
+	public void deleteMaterial(Material material) {
+		materiales.remove(material);
+		material.setCategoria(null);
+	}
 	
 	
 }

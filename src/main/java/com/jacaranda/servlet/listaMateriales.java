@@ -46,39 +46,47 @@ public class listaMateriales extends HttpServlet {
 				out.println("<!DOCTYPE html>");
 				out.println("<html>");
 				out.println("<head>");
+				
+				out.println("<link rel=\"stylesheet\" href=\"./css/style.css\">\r\n");
+				
 				out.println("</head>");
 				out.println("<body>");
 				
-				out.println("<h1>Lista de Materiales</h1>");
-				out.println("<table border='1'>");
+				out.println("<div class'header-container'>");
+				out.println("</div>");
 				
 				
-				out.println("<th>codigo</th>");
-				out.println("<th>nombre</th>");
-				out.println("<th>descripcion</th>");
-				out.println("<th>precio</th>");
-				out.println("<th>cod_categoria</th>");
-				
-				
-				for(Categoria categoria: categorias) {
-					for(Material material: categoria.getMateriales()) {
-						out.println("<tr><td>"+ material.getCodigo() +"</td>");
-						out.println("<td>"+ material.getNombre() +"</td>");
-						out.println("<td>"+ material.getDescripcion() +"</td>");
-						out.println("<td>"+ material.getPrecio() +"</td>");
-						out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");						
+				out.println("<div class'container-wrap'>");
+					out.println("<h1>Lista de Materiales</h1>");
+					out.println("<table align='center'>");
+					
+					
+						out.println("<th>codigo</th>");
+						out.println("<th>nombre</th>");
+						out.println("<th>descripcion</th>");
+						out.println("<th>precio</th>");
+						out.println("<th>cod_categoria</th>");
+					//Listado de materiales con su codigo de categoria
+					for(Categoria categoria: categorias) {
+						for(Material material: categoria.getMateriales()) {
+							out.println("<tr><td>"+ material.getCodigo() +"</td>");
+							out.println("<td>"+ material.getNombre() +"</td>");
+							out.println("<td>"+ material.getDescripcion() +"</td>");
+							out.println("<td>"+ material.getPrecio() +"</td>");
+							out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");						
+						}
 					}
-				}
-				
-				
-				
-				out.println("</table>");
-				
+					
+					
+					
+					out.println("</table>");
+				out.println("</div>");
 				
 				out.println("</body>");
 				out.println("</html>");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.sendRedirect("Error.jsp");
 		}
 		

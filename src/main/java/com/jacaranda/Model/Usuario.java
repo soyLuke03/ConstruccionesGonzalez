@@ -17,6 +17,9 @@ public class Usuario {
 	private LocalDate fechaNacimiento;
 	private String genero;
 	
+	public Usuario() {
+		
+	}
 	
 	public Usuario(String usuario, String password, Integer admin, String nombre, LocalDate fechaNacimiento, String genero) {
 		super();

@@ -11,16 +11,14 @@ public class DaoUser {
 
 	
 	
-	public boolean userIsValid(String name) {
+	public boolean userIsValid(String usuario, String password) {
 	    boolean valid = false;
-		try {
-			Session session = ConnectorDB.getSession();
-			Usuario user = (Usuario) session.get(Usuario.class, name);
-			if(user != null) {
-				valid = true;
-			}
-		}catch(Exception e) {
-		    System.out.println(e.getMessage());
+		Session session = ConnectorDB.getSession();
+		Usuario user = (Usuario) session.get(Usuario.class, usuario);
+		
+		if(user != null) {
+			System.out.println("true");
+			valid = true;
 		}
 		return valid;
 	}

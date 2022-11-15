@@ -30,20 +30,18 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//	}
-
+		// TODO Auto-generated method stub
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+		
 			DaoUser daoUser = new DaoUser();
-	
+			String password = String.valueOf(request.getParameter("password"));
+			String md5Password = DigestUtils.md5Hex(password);
 			String usuario = String.valueOf(request.getParameter("usuario"));
 
-			if(daoUser.userIsValid(usuario)){
+			if(daoUser.userIsValid(usuario,md5Password) == true){
 				HttpSession sesion = request.getSession();
 				sesion.setAttribute("login","True");
 				sesion.setAttribute("usuario",usuario);
@@ -53,9 +51,7 @@ public class login extends HttpServlet {
 			else {
 				response.sendRedirect("Error.jsp");
 			}
-		} catch (Exception e) {
-			response.sendRedirect("Error.jsp");
-		}
+		
 	}
 
 }

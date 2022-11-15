@@ -11,7 +11,11 @@ public class ConnectorDB {
 	private static SessionFactory sf= new MetadataSources(sr).buildMetadata().buildSessionFactory();
 	private static Session session= sf.openSession();	
 	
-	public static Session getSession() {	
+	public static Session getSession() {
+		
+		
 		return session;
+	
+	
 	}
 }

@@ -1,0 +1,33 @@
+.container-wrap{
+	align-content: center;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	width: 90%;
+	border-radius: 15px;
+	text-align: center;
+}
+
+th {
+	text-decoration: underline;
+	text-shadow: orange;
+	border-width: thin;
+	border-style: solid;
+}
+
+tr {
+	border-width: thin;
+	border-style: solid;
+}
+
+td{
+	padding: 4px;
+	background-color: aquamarine;
+	border-width: thin;
+	border-style: solid;
+}
