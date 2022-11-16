@@ -13,8 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.jacaranda.Dao.DaoCategoria;
 import com.jacaranda.Dao.DaoMaterial;
+import com.jacaranda.Dao.DaoUser;
 import com.jacaranda.Model.Categoria;
 import com.jacaranda.Model.Material;
+import com.jacaranda.Model.Usuario;
 
 /**
  * Servlet implementation class listaMateriales
@@ -41,6 +43,7 @@ public class listaMateriales extends HttpServlet {
 			String userName = (String) session.getAttribute("usuario");
 			String login = (String) session.getAttribute("login");
 				
+			Usuario user = DaoUser.getUsuario(userName);
 			
 			if(userName != null && login !=null) {
 				
@@ -57,39 +60,53 @@ public class listaMateriales extends HttpServlet {
 					out.println("</head>");
 					out.println("<body>");
 					
-					out.println("<div class'header-container'>");
-					out.println("<img src=''></img>");
-					out.println("<h1 class='titulo'>Welcome to our shop</h1>");
-					out.println("<button>User"+ userName +"</button>");
-					out.println("</>");
+					out.println("<div class=\"header-container\">");
+					
+						out.println("<div class='foto'>");
+							out.println("<img src='assets/fotoPrincipal.png'></img>");
+							
+							if(user.getAdmin()==1) {
+								out.println("<button onclick=\"location.href='RegisterMaterial.jsp'\">Add stuff</button>");
+							}
+							
+							out.println("</div>");
+						
+						out.println("<div class='titulo'>");
+							out.println("<img src='assets/fotoMedio.png' class='titulo'></img>");
+						out.println("</div>");
+						
+						out.println("<div class='login'>");
+							out.println("<button> <img src='assets/fotoPerfil.png'></img> User: "+ user.getNombre() +" </button>");
+							out.println("<button onclick=\"location.href='Index.jsp'\">Log out</button>");
+						out.println("</div>");
 					
 					out.println("</div>");
 					
 					
-					out.println("<div class'container-wrap'>");
-					out.println("<h1>Lista de Materiales</h1>");
-					out.println("<table align='center'>");
-					
-					
-					out.println("<th>codigo</th>");
-					out.println("<th>nombre</th>");
-					out.println("<th>descripcion</th>");
-					out.println("<th>precio</th>");
-					out.println("<th>cod_categoria</th>");
-					//Listado de materiales con su codigo de categoria
-					for(Categoria categoria: categorias) {
-						for(Material material: categoria.getMateriales()) {
-							out.println("<tr><td>"+ material.getCodigo() +"</td>");
-							out.println("<td>"+ material.getNombre() +"</td>");
-							out.println("<td>"+ material.getDescripcion() +"</td>");
-							out.println("<td>"+ material.getPrecio() +"</td>");
-							out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");						
+					out.println("<div class='container-wrap'>");
+						out.println("<h1>Lista de Materiales</h1>");
+						out.println("<table align='center'>");
+						
+						
+						out.println("<th>codigo</th>");
+						out.println("<th>nombre</th>");
+						out.println("<th>descripcion</th>");
+						out.println("<th>precio</th>");
+						out.println("<th>cod_categoria</th>");
+						//Listado de materiales con su codigo de categoria
+						for(Categoria categoria: categorias) {
+							for(Material material: categoria.getMateriales()) {
+								out.println("<tr><td>"+ material.getCodigo() +"</td>");
+								out.println("<td>"+ material.getNombre() +"</td>");
+								out.println("<td>"+ material.getDescripcion() +"</td>");
+								out.println("<td>"+ material.getPrecio() +"</td>");
+								out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");						
+							}
 						}
-					}
-					
-					
-					
-					out.println("</table>");
+						
+						
+						
+						out.println("</table>");
 					out.println("</div>");
 					
 					out.println("</body>");

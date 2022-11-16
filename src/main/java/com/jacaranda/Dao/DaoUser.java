@@ -11,10 +11,10 @@ public class DaoUser {
 
 	
 	
-	public boolean userIsValid(String usuario, String password) {
+	public boolean userIsValid(String userName, String password) {
 	    boolean valid = false;
 		Session session = ConnectorDB.getSession();
-		Usuario user = (Usuario) session.get(Usuario.class, usuario);
+		Usuario user = (Usuario) session.get(Usuario.class, userName);
 		
 		if(user != null && password.equals(user.getPassword())) {
 			System.out.println("true");
@@ -23,7 +23,12 @@ public class DaoUser {
 		return valid;
 	}
 	
-	
+	public static Usuario getUsuario(String userName) {
+		
+		Session session = ConnectorDB.getSession();
+		Usuario user = (Usuario) session.get(Usuario.class, userName);
+		return user;
+	}
 	
 	
 	public boolean addUsuario(Usuario usuario) {

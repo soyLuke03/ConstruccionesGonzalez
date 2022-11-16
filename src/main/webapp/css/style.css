@@ -1,9 +1,45 @@
-.container-wrap{
-	align-content: center;
-	text-align: center;
+.header-container{
+	display: grid;
+	height:15%;
+    margin: 0%;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-areas:
+    "foto titulo login";
 }
 
-h1 {
+.header-container button {
+    color: red;
+}
+
+.foto {
+	display: grid;
+    grid-area: foto;
+    margin:0%;
+}
+
+.titulo {
+	display: grid;
+    grid-area: titulo;
+    margin: 0%;
+}
+
+.login {
+	display: grid;
+    grid-area: login;
+}
+
+.login img, .login img, .login button{
+    margin: auto;
+    height: 80%;
+    width: 80%;
+}
+
+.login button a{
+	text-decoration: none;
+}
+
+.container-wrap{
+	align-content: center;
 	text-align: center;
 }
 
