@@ -49,7 +49,7 @@ public class login extends HttpServlet {
 				response.sendRedirect("listaMateriales");
 			}
 			else {
-				response.sendRedirect("Error.jsp");
+				response.sendRedirect("Index.jsp?id=loginFalse");
 			}
 		
 	}

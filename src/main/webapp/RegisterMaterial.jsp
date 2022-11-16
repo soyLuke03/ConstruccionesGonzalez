@@ -14,11 +14,13 @@
     <body>
     	<% 
 		try {
+			DaoUser daoUser = new DaoUser();
+			
 			session = request.getSession();
 			String userName = (String) session.getAttribute("usuario");
 			String login = (String) session.getAttribute("login");
 				
-			Usuario user = DaoUser.getUsuario(userName);
+			Usuario user = daoUser.getUsuario(userName);
 			
 			if(userName != null && login !=null) {
 				DaoCategoria daoCategoria = new DaoCategoria();
@@ -28,7 +30,7 @@
 	
 	            <div class="formulario">
 	                <caption> 
-	                    <h1>Registrar Usuario</h1>
+	                    <h1>Register material</h1>
 	                </caption>
 	                   <fieldset>
 	                		<form action="addMaterial.jsp" method="post">
@@ -52,15 +54,23 @@
 		                        <select id="category" name="category">
 									<% 
 									for(Categoria categoria: categorias) {
-										out.println("<option>" + categoria.getNombre() + "</option>");
+										out.println("<option>" + categoria.getNombre() + " " + categoria.getCodigo() + "</option>");
 									}
 									%>
 	                            </select>
 		                        <br>
 		                        <br>
+		                        <%
+		                        String errorMsg = request.getParameter("id");
+		                        if (errorMsg!=null){
+		                        %>
+		                        	<span>Id already exists</span>
+		                        <%
+		                        }
+		                        %>
 		                        <input type="submit" >
 	                		</form>
-	                		<a href="Index.jsp">
+	                		<a href="listaMateriales">
 	                        	<button>Volver al inicio</button>
 	                       	</a>
 	                   </fieldset>
@@ -70,11 +80,11 @@
 			<% 
 			}
 			else{
-				response.sendRedirect("Error.jsp");
+				response.sendRedirect("./errorPages/Error.jsp");
 			}
 			}
 			catch(Exception e){
-				response.sendRedirect("Error.jsp");
+				response.sendRedirect("./errorPages/Error.jsp");
 			}
 			%>
 

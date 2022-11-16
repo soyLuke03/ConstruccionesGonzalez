@@ -1,12 +1,11 @@
 .container-wrap {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: 
     ". . . . ."
     ". . formulario . ."
     ". . formulario . ."
-    ". . . . ."
     ". . . . .";
 }
 
@@ -28,4 +27,8 @@ label, input, button, h1 {
 
 input {
     width: 80%;
+}
+
+span{
+	color: red;
 }

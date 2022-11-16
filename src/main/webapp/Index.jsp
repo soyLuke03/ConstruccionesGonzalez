@@ -29,6 +29,14 @@
 	                        <input required type="password" name="password" id="password" placeholder="Introduzca una contraseña">
 	                        <br>
 	                        <br>
+	                        <%
+	                        String errorMsg = request.getParameter("id");
+	                        if (errorMsg!=null){
+	                         %>
+	                         <span>Password or User incorrect</span>
+	                        <%	
+	                        }
+	                        %>
 	                        <input type="submit" >
                 		</form>
                         <a href="Register.jsp">

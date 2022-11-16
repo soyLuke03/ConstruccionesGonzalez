@@ -8,15 +8,20 @@ import com.jacaranda.Model.Categoria;
 
 public class DaoCategoria {
 
+	private Session session = null;
+	
+	public DaoCategoria() {
+		ConnectorDB conectordb = new ConnectorDB();
+		session = conectordb.getSession();
+	}
 	
 	public List<Categoria> getCategorias() {
-		Query<Categoria> query = ConnectorDB.getSession().createQuery("SELECT c FROM com.jacaranda.Model.Categoria c");
+		Query<Categoria> query = session.createQuery("SELECT c FROM com.jacaranda.Model.Categoria c");
 		return query.getResultList();
 	}
 	
-	public static Integer getCodigoCategoria(String categoriaName) {
+	public Integer getCodigoCategoria(String categoriaName) {
 		
-		Session session = ConnectorDB.getSession();
 		Query<Categoria> query = session.createQuery("SELECT c FROM com.jacaranda.Model.Categoria c");
 		List<Categoria> categorias = query.getResultList();
 		Integer codigo = null;
@@ -29,9 +34,8 @@ public class DaoCategoria {
 		return codigo;
 	}
 	
-	public static Categoria getCategoria(Integer categoriaId) {
+	public Categoria getCategoria(Integer categoriaId) {
 		
-		Session session = ConnectorDB.getSession();
 		Categoria categoria = (Categoria) session.get(Categoria.class, categoriaId);
 		
 		return categoria;

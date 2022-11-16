@@ -39,11 +39,13 @@ public class listaMateriales extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
+			DaoUser daoUser = new DaoUser();
+			
 			HttpSession session = request.getSession();
 			String userName = (String) session.getAttribute("usuario");
 			String login = (String) session.getAttribute("login");
 				
-			Usuario user = DaoUser.getUsuario(userName);
+			Usuario user = daoUser.getUsuario(userName);
 			
 			if(userName != null && login !=null) {
 				
@@ -76,23 +78,24 @@ public class listaMateriales extends HttpServlet {
 						out.println("</div>");
 						
 						out.println("<div class='login'>");
-							out.println("<button> <img src='assets/fotoPerfil.png'></img> User: "+ user.getNombre() +" </button>");
+							out.println("<button> <img src='assets/fotoPerfil.png'></img><p> User: "+ user.getNombre() +" </p></button>");
 							out.println("<button onclick=\"location.href='Index.jsp'\">Log out</button>");
 						out.println("</div>");
 					
 					out.println("</div>");
 					
-					
+					out.println("<hr>");
+						
 					out.println("<div class='container-wrap'>");
 						out.println("<h1>Lista de Materiales</h1>");
 						out.println("<table align='center'>");
 						
 						
-						out.println("<th>codigo</th>");
-						out.println("<th>nombre</th>");
-						out.println("<th>descripcion</th>");
-						out.println("<th>precio</th>");
-						out.println("<th>cod_categoria</th>");
+						out.println("<th><h3>CODE</h3></th>");
+						out.println("<th><h3>NAME</h3></th>");
+						out.println("<th><h3>DESCRIPTION</h3></th>");
+						out.println("<th><h3>PRICE</h3></th>");
+						out.println("<th><h3>CATEGORY</h3></th>");
 						//Listado de materiales con su codigo de categoria
 						for(Categoria categoria: categorias) {
 							for(Material material: categoria.getMateriales()) {
@@ -100,7 +103,7 @@ public class listaMateriales extends HttpServlet {
 								out.println("<td>"+ material.getNombre() +"</td>");
 								out.println("<td>"+ material.getDescripcion() +"</td>");
 								out.println("<td>"+ material.getPrecio() +"</td>");
-								out.println("<td>"+ material.getCategoria().getCodigo() +"</td></tr>");						
+								out.println("<td>"+ material.getCategoria().getNombre() +"</td></tr>");						
 							}
 						}
 						
@@ -114,13 +117,13 @@ public class listaMateriales extends HttpServlet {
 				} 
 				catch (Exception e) {
 					e.printStackTrace();
-					response.sendRedirect("Error.jsp");
+					response.sendRedirect("./errorPages/Error.jsp");
 				}
 				}
 				
 			}
 		catch (Exception e) {
-			response.sendRedirect("Error.jsp");
+			response.sendRedirect("./errorPages/Error.jsp");
 		}
 		
 		//Final del codigo

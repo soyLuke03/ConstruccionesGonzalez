@@ -1,3 +1,4 @@
+<%@page import="com.jacaranda.Exceptions.DaoUserException"%>
 <%@page import="com.jacaranda.Dao.DaoUser"%>
 <%@page import="org.apache.commons.codec.digest.DigestUtils"%>
 <%@page import="com.jacaranda.Model.Usuario"%>
@@ -10,6 +11,9 @@
 		DaoUser daoUser = new DaoUser(); //
 	
 		String user = request.getParameter("usuario");
+		
+		daoUser.usuarioExists(user);
+		
 		String password = request.getParameter("password");
 		String passEncrypt = DigestUtils.md5Hex(password);
 		
@@ -21,8 +25,12 @@
 		
 		daoUser.addUsuario(usuario);
 		response.sendRedirect("Index.jsp");
-	} catch (Exception e) {
-		response.sendRedirect("Error.jsp");
+	}
+	catch (DaoUserException e) {
+		response.sendRedirect("Register.jsp?id=false");
+	} 
+	catch (Exception e) {
+		response.sendRedirect("./errorPages/Error.jsp");
 	}
 
 

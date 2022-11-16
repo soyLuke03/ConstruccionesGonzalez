@@ -42,6 +42,14 @@
                             </select>
 	                        <br>
 	                        <br>
+	                        	<%
+		                        String errorMsg = request.getParameter("id");
+		                        if (errorMsg!=null){
+		                        %>
+		                        	<span>Name does exists</span>
+		                        <%
+		                        }
+		                        %>
 	                        <input type="submit" >
                 		</form>
                 		<a href="Index.jsp">

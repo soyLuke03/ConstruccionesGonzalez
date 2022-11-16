@@ -12,12 +12,12 @@
 
             <div class="formulario">
                    <fieldset>
-                		<form action="listaMateriales" method="post">
+                		
 	                        
                             <h1>Oh no, ha aparecido un error inesperado</h1>
                             <h3>Contacta con el administrador o prueba de nuevo</h3>
-                            <a href="Index.jsp">Volver al inicio</a>
-                		</form>
+                            <a href="../Index.jsp">Volver al inicio</a>
+                		
                    </fieldset>
             </div>
 

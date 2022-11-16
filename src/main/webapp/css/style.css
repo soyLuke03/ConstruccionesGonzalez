@@ -29,9 +29,8 @@
 }
 
 .login img, .login img, .login button{
-    margin: auto;
-    height: 80%;
-    width: 80%;
+    height: 90%;
+    width: 90%;
 }
 
 .login button a{
@@ -51,7 +50,6 @@ table {
 
 th {
 	text-decoration: underline;
-	text-shadow: orange;
 	border-width: thin;
 	border-style: solid;
 }
@@ -63,7 +61,7 @@ tr {
 
 td{
 	padding: 4px;
-	background-color: aquamarine;
+	background-color: red;
 	border-width: thin;
 	border-style: solid;
 }
