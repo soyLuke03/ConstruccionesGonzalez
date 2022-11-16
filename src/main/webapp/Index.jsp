@@ -32,7 +32,7 @@
 	                        <%
 	                        String errorMsg = request.getParameter("id");
 	                        if (errorMsg!=null){
-	                         %>
+	                        %>
 	                         <span>Password or User incorrect</span>
 	                        <%	
 	                        }
