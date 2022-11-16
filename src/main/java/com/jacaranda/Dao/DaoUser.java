@@ -19,11 +19,12 @@ public class DaoUser {
 	
 	public boolean userIsValid(String userName, String password) {
 	    boolean valid = false;
-		Usuario user = (Usuario) session.get(Usuario.class, userName);
-		
-		if(user != null && password.equals(user.getPassword())) {
-			System.out.println("true");
-			valid = true;
+		if (userName != null && password != null) {
+			Usuario user = (Usuario) session.get(Usuario.class, userName);
+			if (user != null && password.equals(user.getPassword())) {
+				System.out.println("true");
+				valid = true;
+			} 
 		}
 		return valid;
 	}

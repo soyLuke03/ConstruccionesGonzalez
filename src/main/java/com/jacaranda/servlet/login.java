@@ -41,15 +41,19 @@ public class login extends HttpServlet {
 			String md5Password = DigestUtils.md5Hex(password);
 			String usuario = String.valueOf(request.getParameter("usuario"));
 
-			if(daoUser.userIsValid(usuario,md5Password) == true){
-				HttpSession sesion = request.getSession();
-				sesion.setAttribute("login","True");
-				sesion.setAttribute("usuario",usuario);
-				
-				response.sendRedirect("listaMateriales");
+			if (password != null && usuario != null && md5Password != null) {
+				if (daoUser.userIsValid(usuario, md5Password) == true) {
+					HttpSession sesion = request.getSession();
+					sesion.setAttribute("login", "True");
+					sesion.setAttribute("usuario", usuario);
+
+					response.sendRedirect("listaMateriales");
+				} else {
+					response.sendRedirect("Index.jsp?id=loginFalse");
+				} 
 			}
 			else {
-				response.sendRedirect("Index.jsp?id=loginFalse");
+				response.sendRedirect("./errorPages/Error.jsp");
 			}
 		
 	}
