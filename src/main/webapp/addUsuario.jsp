@@ -25,8 +25,7 @@
 			Usuario usuario = new Usuario(user,passEncrypt,0,nombre,fechaNacimiento,genero); //
 			daoUser.addUsuario(usuario);
 			response.sendRedirect("Index.jsp");
-		}
-		else{
+		}else{
 			response.sendRedirect("./errorPages/ErrorUsuario.jsp");
 		}
 		

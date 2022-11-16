@@ -78,7 +78,7 @@ public class listaMateriales extends HttpServlet {
 						out.println("</div>");
 						
 						out.println("<div class='login'>");
-							out.println("<button> <img src='assets/fotoPerfil.png'></img><p> User: "+ user.getNombre() +" </p></button>");
+							out.println("<button> <img src='assets/fotoPerfil.png'></img>User: "+ user.getNombre() +"</button>");
 							out.println("<button onclick=\"location.href='Index.jsp'\">Log out</button>");
 						out.println("</div>");
 					
