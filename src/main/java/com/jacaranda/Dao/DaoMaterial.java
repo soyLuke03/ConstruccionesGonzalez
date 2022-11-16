@@ -36,9 +36,11 @@ public class DaoMaterial {
 	public Boolean materialExists(Integer codeMaterial) throws DaoMaterialException {
 		Boolean exists = false;
 		
-		Material material = (Material) session.get(Material.class, codeMaterial);
-		if(material != null) {
-			throw new DaoMaterialException("[ERROR - Material - Material does exist in database]");
+		if (codeMaterial != null) {
+			Material material = (Material) session.get(Material.class, codeMaterial);
+			if (material != null) {
+				throw new DaoMaterialException("[ERROR - Material - Material does exist in database]");
+			} 
 		}
 		return exists;
 	}

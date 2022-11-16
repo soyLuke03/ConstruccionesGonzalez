@@ -37,8 +37,11 @@ public class login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 			DaoUser daoUser = new DaoUser();
+			
+			
 			String password = String.valueOf(request.getParameter("password"));
 			String md5Password = DigestUtils.md5Hex(password);
+			
 			String usuario = String.valueOf(request.getParameter("usuario"));
 
 			if (password != null && usuario != null && md5Password != null) {

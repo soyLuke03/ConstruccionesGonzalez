@@ -22,7 +22,6 @@ public class DaoUser {
 		if (userName != null && password != null) {
 			Usuario user = (Usuario) session.get(Usuario.class, userName);
 			if (user != null && password.equals(user.getPassword())) {
-				System.out.println("true");
 				valid = true;
 			} 
 		}
@@ -30,16 +29,21 @@ public class DaoUser {
 	}
 	
 	public Usuario getUsuario(String userName) {
-		
-		Usuario user = (Usuario) session.get(Usuario.class, userName);
+		Usuario user = null;
+		if (userName != null) {
+			user = (Usuario) session.get(Usuario.class, userName);
+		}
 		return user;
+		
 	}
 	
 	public Boolean usuarioExists(String userName) throws DaoUserException {
 		Boolean exists = false;
-		Usuario user = (Usuario) session.get(Usuario.class, userName);
-		if(user!=null) {
-			throw new DaoUserException("[ERROR - User - User does exist in database]");
+		if (userName != null) {
+			Usuario user = (Usuario) session.get(Usuario.class, userName);
+			if (user != null) {
+				throw new DaoUserException("[ERROR - User - User does exist in database]");
+			} 
 		}
 		return exists;
 	}
@@ -47,11 +51,13 @@ public class DaoUser {
 	public boolean addUsuario(Usuario usuario) {
 			boolean added = false;
 			session.getTransaction().begin();
-			// Aqui va la transacci�n a realizar
-			try {
-				session.save(usuario);
-			} catch (Exception e) {
-				session.getTransaction().rollback();
+			if (usuario != null) {
+				// Aqui va la transacci�n a realizar
+				try {
+					session.save(usuario);
+				} catch (Exception e) {
+					session.getTransaction().rollback();
+				} 
 			}
 			// --------------------------------
 			session.getTransaction().commit();

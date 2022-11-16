@@ -54,7 +54,7 @@
 		                        <select id="category" name="category">
 									<% 
 									for(Categoria categoria: categorias) {
-										out.println("<option>" + categoria.getNombre() + " " + categoria.getCodigo() + "</option>");
+										out.println("<option>" + categoria.getNombre() + "</option>");
 									}
 									%>
 	                            </select>
@@ -80,7 +80,7 @@
 			<% 
 			}
 			else{
-				response.sendRedirect("./errorPages/Error.jsp");
+				response.sendRedirect("./errorPages/ErrorLogin.jsp");
 			}
 			}
 			catch(Exception e){

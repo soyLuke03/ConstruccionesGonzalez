@@ -19,7 +19,7 @@
 fieldset {
     border-style: groove;
     border-radius: 50px;
-    background-color: #669900;
+    background-color: rgb(255, 115, 115);
 }
 
 label, input, button, h1 {

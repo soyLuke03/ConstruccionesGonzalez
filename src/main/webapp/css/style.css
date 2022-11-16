@@ -29,8 +29,8 @@
 }
 
 .login img, .login img, .login button{
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
 }
 
 .login button a{
@@ -61,7 +61,12 @@ tr {
 
 td{
 	padding: 4px;
-	background-color: red;
+	background-color: rgb(255, 115, 115);
 	border-width: thin;
 	border-style: solid;
+}
+
+td:hover{
+	color: white;
+	background-color: red;
 }

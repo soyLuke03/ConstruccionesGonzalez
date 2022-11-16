@@ -103,7 +103,7 @@ public class listaMateriales extends HttpServlet {
 								out.println("<td>"+ material.getNombre() +"</td>");
 								out.println("<td>"+ material.getDescripcion() +"</td>");
 								out.println("<td>"+ material.getPrecio() +"</td>");
-								out.println("<td>"+ material.getCategoria().getNombre() +"</td></tr>");						
+								out.println("<td>"+ material.getCategoria().getNombre() + " - " + material.getCategoria().getCodigo() +"</td></tr>");						
 							}
 						}
 						
@@ -116,9 +116,10 @@ public class listaMateriales extends HttpServlet {
 					out.println("</html>");
 				} 
 				catch (Exception e) {
-					e.printStackTrace();
 					response.sendRedirect("./errorPages/Error.jsp");
 				}
+				}else {
+					response.sendRedirect("./errorPages/ErrorLogin.jsp");
 				}
 				
 			}

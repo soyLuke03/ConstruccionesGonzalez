@@ -12,8 +12,6 @@
 		DaoCategoria daoCategoria = new DaoCategoria();
 		
 		Integer codigo = Integer.valueOf(request.getParameter("codigo"));
-		
-		
 		daoMaterial.materialExists(codigo);
 		
 		
@@ -25,18 +23,18 @@
 		Integer categoriaId = daoCategoria.getCodigoCategoria(name_categoria);
 		Categoria categoria = daoCategoria.getCategoria(categoriaId);
 		
-		
-		Material newMaterial = new Material(codigo,nombre,descripcion,precio,categoria);
-		daoMaterial.addMaterial(newMaterial);
-			
-		
-		response.sendRedirect("listaMateriales");
-		
+		if(codigo != null && nombre != null && descripcion != null && precio != null){
+			Material newMaterial = new Material(codigo,nombre,descripcion,precio,categoria);
+			daoMaterial.addMaterial(newMaterial);
+			response.sendRedirect("listaMateriales");
+		}else{
+			response.sendRedirect("./errorPages/ErrorCategoria.jsp");
+		}
 	}catch(DaoMaterialException d){
 		response.sendRedirect("RegisterMaterial.jsp?id=false");
 	}
 	catch (Exception e) {
-		response.sendRedirect("./errorPages/Error.jsp");
+		response.sendRedirect("./errorPages/Error.jsp?id=exception");
 	}
 
 

@@ -11,7 +11,6 @@
 		DaoUser daoUser = new DaoUser(); //
 	
 		String user = request.getParameter("usuario");
-		
 		daoUser.usuarioExists(user);
 		
 		String password = request.getParameter("password");
@@ -21,10 +20,16 @@
 		LocalDate fechaNacimiento = LocalDate.parse(String.valueOf((request.getParameter("fecha"))));
 		String genero = request.getParameter("genero");
 	
-		Usuario usuario = new Usuario(user,passEncrypt,0,nombre,fechaNacimiento,genero); // 
 		
-		daoUser.addUsuario(usuario);
-		response.sendRedirect("Index.jsp");
+		if(user != null && passEncrypt != null && nombre != null && fechaNacimiento != null && genero != null){
+			Usuario usuario = new Usuario(user,passEncrypt,0,nombre,fechaNacimiento,genero); //
+			daoUser.addUsuario(usuario);
+			response.sendRedirect("Index.jsp");
+		}
+		else{
+			response.sendRedirect("./errorPages/ErrorUsuario.jsp");
+		}
+		
 	}
 	catch (DaoUserException e) {
 		response.sendRedirect("Register.jsp?id=false");
