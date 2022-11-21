@@ -108,7 +108,7 @@ public class listaMateriales extends HttpServlet {
 								out.println("<td>"+ material.getPrecio() +"</td>");
 								out.println("<td>"+ material.getCategoria().getNombre() + " - " + material.getCategoria().getCodigo() +"</td>");
 								out.println("<td>"+ material.getStock() +"</td>");
-								out.println("<td><button onclick=\"location.href='CarritoCompra.jsp'\">Add</button></td></tr>");
+								out.println("<td><button onclick=\"location.href='addToCarrito.jsp?id="+ material.getCodigo() +"'\">Add</button></td></tr>");
 							}
 						}
 						

@@ -1,5 +1,6 @@
 package com.jacaranda.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,17 +9,17 @@ public class CarritoDeLaCompra {
 	
 	private List<ItemCarrito> listaDeItemDelCarrito;
 
-	public CarritoDeLaCompra(List<ItemCarrito> listaDeItemDelCarrito) {
-		super();
-		this.listaDeItemDelCarrito = listaDeItemDelCarrito;
+	public CarritoDeLaCompra() {
+		listaDeItemDelCarrito = new ArrayList<>();
 	}
+
 
 	public List<ItemCarrito> getListaDeItemDelCarrito() {
 		return listaDeItemDelCarrito;
 	}
 
-	public void setListaDeItemDelCarrito(List<ItemCarrito> listaDeItemDelCarrito) {
-		this.listaDeItemDelCarrito = listaDeItemDelCarrito;
+	public void setListaDeItemDelCarrito(ItemCarrito itemDelCarrito) {
+		this.listaDeItemDelCarrito.add(itemDelCarrito);
 	}
 
 	@Override
