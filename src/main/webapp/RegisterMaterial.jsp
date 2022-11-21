@@ -50,6 +50,10 @@
 		                        <input type="number" step="0.01" name="price" id="price" required>
 		                        <br>
 		                        <br>
+		                        <label>Stock</label><br>
+		                        <input type="number" name="stock" id="stock" required>
+		                        <br>
+		                        <br>
 	                            <label>Category</label><br>
 		                        <select id="category" name="category">
 									<% 

@@ -15,6 +15,7 @@ public class Material {
 	private String nombre;
 	private String descripcion;
 	private Double precio;
+	private Integer stock;
 	@ManyToOne
 	@JoinColumn private Categoria cod_categoria;
 	
@@ -22,20 +23,22 @@ public class Material {
 		
 	}
 	
-	public Material(Integer codigo, String nombre, String descripcion, Double precio, Categoria cod_categoria) {
+	public Material(Integer codigo, String nombre, String descripcion, Double precio, Integer stock, Categoria cod_categoria) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
+		this.stock = stock;
 		this.cod_categoria = cod_categoria;
 	}
 	
-	public Material(Integer codigo, String nombre, String descripcion, Double precio) {
+	public Material(Integer codigo, String nombre, String descripcion, Integer stock, Double precio) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.stock = stock;
 		this.precio = precio;
 	}
 	
@@ -99,6 +102,22 @@ public class Material {
 
 	public void setCategoria(Categoria categoria) {
 		this.cod_categoria = categoria;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+	public Categoria getCod_categoria() {
+		return cod_categoria;
+	}
+
+	public void setCod_categoria(Categoria cod_categoria) {
+		this.cod_categoria = cod_categoria;
 	}
 
 	@Override

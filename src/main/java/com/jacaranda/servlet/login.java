@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.digest.DigestUtils;
 import com.jacaranda.Dao.DaoUser;
+import com.jacaranda.Model.CarritoDeLaCompra;
 
 
 /**
@@ -36,8 +37,11 @@ public class login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//try {
+			
 		
 			DaoUser daoUser = new DaoUser();
+			
 			
 			
 			String password = String.valueOf(request.getParameter("password"));
@@ -59,6 +63,9 @@ public class login extends HttpServlet {
 			else {
 				response.sendRedirect("./errorPages/Error.jsp");
 			}
+		//}catch (Exception e) {
+		//	response.sendRedirect("listaMateriales");
+		//}
 		
 	}
 

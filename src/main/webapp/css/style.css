@@ -24,8 +24,18 @@
     
 }
 
-.foto button:hover, .login button:hover{
+.foto button:hover, .login button:hover, tr td button:hover{
 	background-color: black;
+	color: white;
+}
+
+tr td button{
+	width:100%;
+	height:100%;
+	margin:0%;
+	padding:0%;
+	border-style: groove;
+    border-color: grey;
 }
 
 .titulo {
@@ -40,9 +50,10 @@
 }
 
 .login img, .login img, .login button{
-    font-size: 15px;
+    font-size: 20px;
     border-style: groove;
     border-color: grey;
+    margin-top: 5px
 }
 
 .login img {

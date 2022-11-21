@@ -71,7 +71,7 @@ public class listaMateriales extends HttpServlet {
 								out.println("<button onclick=\"location.href='RegisterMaterial.jsp'\">Add stuff</button>");
 							}
 							
-							out.println("</div>");
+						out.println("</div>");
 						
 						out.println("<div class='titulo'>");
 							out.println("<img src='assets/fotoMedio.png' class='titulo'></img>");
@@ -80,6 +80,7 @@ public class listaMateriales extends HttpServlet {
 						out.println("<div class='login'>");
 							out.println("<button> <img src='assets/fotoPerfil.png'></img>User: "+ user.getNombre() +"</button>");
 							out.println("<button onclick=\"location.href='Index.jsp'\">Log out</button>");
+							out.println("<button onclick=\"location.href='CarritoCompra.jsp'\">Shopping cart</button>");
 						out.println("</div>");
 					
 					out.println("</div>");
@@ -96,6 +97,8 @@ public class listaMateriales extends HttpServlet {
 						out.println("<th><h3>DESCRIPTION</h3></th>");
 						out.println("<th><h3>PRICE</h3></th>");
 						out.println("<th><h3>CATEGORY</h3></th>");
+						out.println("<th><h3>STOCK</h3></th>");
+						out.println("<th><h3>ADD TO CART</h3></th>");
 						//Listado de materiales con su codigo de categoria
 						for(Categoria categoria: categorias) {
 							for(Material material: categoria.getMateriales()) {
@@ -103,7 +106,9 @@ public class listaMateriales extends HttpServlet {
 								out.println("<td>"+ material.getNombre() +"</td>");
 								out.println("<td>"+ material.getDescripcion() +"</td>");
 								out.println("<td>"+ material.getPrecio() +"</td>");
-								out.println("<td>"+ material.getCategoria().getNombre() + " - " + material.getCategoria().getCodigo() +"</td></tr>");						
+								out.println("<td>"+ material.getCategoria().getNombre() + " - " + material.getCategoria().getCodigo() +"</td>");
+								out.println("<td>"+ material.getStock() +"</td>");
+								out.println("<td><button onclick=\"location.href='CarritoCompra.jsp'\">Add</button></td></tr>");
 							}
 						}
 						
