@@ -7,24 +7,29 @@ import java.util.Objects;
 public class CarritoDeLaCompra {
 
 	
-	private List<ItemCarrito> listaDeItemDelCarrito;
+	private List<UsuarioMaterial> listaDeUsuarioMaterial;
 
 	public CarritoDeLaCompra() {
-		listaDeItemDelCarrito = new ArrayList<>();
+		listaDeUsuarioMaterial = new ArrayList<>();
 	}
 
 
-	public List<ItemCarrito> getListaDeItemDelCarrito() {
-		return listaDeItemDelCarrito;
+	public List<UsuarioMaterial> getListaDeItemDelCarrito() {
+		return listaDeUsuarioMaterial;
 	}
 
-	public void setListaDeItemDelCarrito(ItemCarrito itemDelCarrito) {
-		this.listaDeItemDelCarrito.add(itemDelCarrito);
+	public void addListaDeItemDelCarrito(UsuarioMaterial usuarioMaterial) {
+		this.listaDeUsuarioMaterial.add(usuarioMaterial);
 	}
+	
+	
+	
+	
+	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(listaDeItemDelCarrito);
+		return Objects.hash(listaDeUsuarioMaterial);
 	}
 
 	@Override
@@ -36,12 +41,12 @@ public class CarritoDeLaCompra {
 		if (getClass() != obj.getClass())
 			return false;
 		CarritoDeLaCompra other = (CarritoDeLaCompra) obj;
-		return Objects.equals(listaDeItemDelCarrito, other.listaDeItemDelCarrito);
+		return Objects.equals(listaDeUsuarioMaterial, other.listaDeUsuarioMaterial);
 	}
 
 	@Override
 	public String toString() {
-		return "CarritoDeLaCompra [listaDeItemDelCarrito=" + listaDeItemDelCarrito + "]";
+		return "CarritoDeLaCompra [listaDeUsuarioMaterial=" + listaDeUsuarioMaterial + "]";
 	}
 	
 	

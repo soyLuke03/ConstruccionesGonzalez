@@ -30,11 +30,6 @@ public class UsuarioMaterial {
 	private Material material;
 	
 	@Id
-	@ManyToOne
-	@JoinColumn(
-			name="Fecha",
-			insertable = false, updatable = false
-			)
 	private LocalDateTime fecha;
 	
 	private Double precio;
