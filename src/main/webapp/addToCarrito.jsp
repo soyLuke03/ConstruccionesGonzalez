@@ -44,6 +44,7 @@
 		}
 		//Si carrito == null -> Creamos carrito
 		else{
+			
 			// Creamos el carrito
 			CarritoDeLaCompra newCarrito = new CarritoDeLaCompra();
 			
@@ -52,10 +53,20 @@
 			Material material = daoMaterial.getMaterial(idMaterial);
 			
 			if(idMaterial!=null && material.getStock()>0){
+				
 				session.setAttribute("carrito", newCarrito);
+				
+				carrito = (CarritoDeLaCompra) session.getAttribute("carrito");
+				
 				UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),material.getStock());
+				
+				
+				try{
 				carrito.addListaDeItemDelCarrito(itemCarrito);
 				
+				}catch(Exception e){
+					System.out.println("No va");
+				}
 				
 				response.sendRedirect("listaMateriales");
 			}
