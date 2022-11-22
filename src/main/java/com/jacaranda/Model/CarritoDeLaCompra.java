@@ -13,13 +13,23 @@ public class CarritoDeLaCompra {
 		listaDeUsuarioMaterial = new ArrayList<>();
 	}
 
-
+	public void vaciarListaDeItemDelCarrito() {
+		listaDeUsuarioMaterial = new ArrayList<>();
+	}
+	
 	public List<UsuarioMaterial> getListaDeItemDelCarrito() {
 		return listaDeUsuarioMaterial;
 	}
 
 	public void addListaDeItemDelCarrito(UsuarioMaterial usuarioMaterial) {
-		this.listaDeUsuarioMaterial.add(usuarioMaterial);
+		if(listaDeUsuarioMaterial!=null) {
+			
+			if(listaDeUsuarioMaterial.size()==0) {
+				this.listaDeUsuarioMaterial.add(usuarioMaterial);
+			}else {
+				this.listaDeUsuarioMaterial.add(listaDeUsuarioMaterial.size()-1,usuarioMaterial);
+			}
+		}
 	}
 	
 	

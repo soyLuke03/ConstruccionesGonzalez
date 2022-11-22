@@ -60,13 +60,8 @@
 				
 				UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),material.getStock());
 				
-				
-				try{
 				carrito.addListaDeItemDelCarrito(itemCarrito);
 				
-				}catch(Exception e){
-					System.out.println("No va");
-				}
 				
 				response.sendRedirect("listaMateriales");
 			}

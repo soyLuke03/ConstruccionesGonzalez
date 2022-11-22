@@ -29,7 +29,7 @@ try{
 						<div class='foto'>
 							<img src='assets/fotoPrincipal.png'></img>
 							<button onclick="location.href='BuyNow.jsp'">BUY NOW!!</button>
-							<button>Empty shopping cart</button>
+							<button onclick="location.href='CarritoCompra.jsp?vaciar=true'">Empty shopping cart</button>
 						</div>
 						<div class='titulo'>
 							<img src='assets/fotoMedio.png' class='titulo'></img>
@@ -42,24 +42,42 @@ try{
 						</div>
 					</div>
 					<hr>
-					<table>
-				<%
-				if(carrito != null){
-					for(UsuarioMaterial itemCarrito : carrito.getListaDeItemDelCarrito()){
-						out.println("<tr>");
-						out.println("<td>"+ itemCarrito.getUsuario().getNombre() +"</td>");
-						out.println("<td>"+ itemCarrito.getPrecio() +"</td>");
-						out.println("<td>"+ itemCarrito.getMaterial().getNombre() +"</td>");
-						out.println("<td>"+ itemCarrito.getMaterial().getDescripcion() +"</td>");
-						out.println("<td>"+ itemCarrito.getFecha().getHour() + ":" + itemCarrito.getFecha().getMinute() +"</td>");
-						out.println("</tr>");
-					}
-				}else{
-					out.println("<h1 align='center'>You do not have any item on the shopping cart. Go to buy something!!</h1>");
-				}
-				%>
-					</table>
-	
+					<div class="container-wrap">
+						<table align="center">
+							<th><h3>Name</h3></th>
+							<th><h3>Price</h3></th>
+							<th><h3>Material name</h3></th>
+							<th><h3>Description</h3></th>
+							<th><h3>Date</h3></th>
+						
+							<%
+							Boolean vaciar = Boolean.valueOf(request.getParameter("vaciar"));
+							
+							if(vaciar == true){
+								carrito.vaciarListaDeItemDelCarrito();
+								carrito = null;
+							}
+							
+							
+							if(carrito != null && carrito.getListaDeItemDelCarrito().size() != 0){
+								for(UsuarioMaterial itemCarrito : carrito.getListaDeItemDelCarrito()){
+									out.println("<tr>");
+									out.println("<td>"+ itemCarrito.getUsuario().getNombre() +"</td>");
+									out.println("<td>"+ itemCarrito.getPrecio() +"</td>");
+									out.println("<td>"+ itemCarrito.getMaterial().getNombre() +"</td>");
+									out.println("<td>"+ itemCarrito.getMaterial().getDescripcion() +"</td>");
+									out.println("<td>"+ itemCarrito.getFecha().getDayOfMonth() + " - "
+													  + itemCarrito.getFecha().getMonth() + "  /  "
+													  + itemCarrito.getFecha().getHour() + ":"
+													  + itemCarrito.getFecha().getMinute() +"</td>");
+									out.println("</tr>");
+								}
+							}else{
+								out.println("<h1 align='center'>You do not have any item on the shopping cart. Go to buy something!!</h1>");
+							}
+							%>
+						</table>
+					</div>
 	
 <%	
 	}
