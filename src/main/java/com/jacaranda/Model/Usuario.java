@@ -1,10 +1,14 @@
 package com.jacaranda.Model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity (name="Usuarios")
 public class Usuario {
@@ -16,6 +20,9 @@ public class Usuario {
 	private String nombre;
 	private LocalDate fechaNacimiento;
 	private String genero;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<UsuarioMaterial> compradores = new ArrayList<>();
 	
 	public Usuario() {
 		

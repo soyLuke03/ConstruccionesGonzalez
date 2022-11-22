@@ -1,11 +1,15 @@
 package com.jacaranda.Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity (name="materiales")
 public class Material {
@@ -18,6 +22,9 @@ public class Material {
 	private Integer stock;
 	@ManyToOne
 	@JoinColumn private Categoria cod_categoria;
+	
+	@OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<UsuarioMaterial> materialesVendidos = new ArrayList<>();
 	
 	public Material() {
 		
