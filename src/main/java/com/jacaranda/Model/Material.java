@@ -129,7 +129,7 @@ public class Material {
 
 	@Override
 	public String toString() {
-		return "Material [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
+		return "Material [codigo=" + codigo + ", nombre=" + nombre + ", Stock=" + stock+ ", descripcion=" + descripcion + ", precio=" + precio
 				+ ", cod_categoria=" + cod_categoria + "]";
 	}
 

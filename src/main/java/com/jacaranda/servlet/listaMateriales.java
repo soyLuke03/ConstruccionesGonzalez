@@ -87,6 +87,8 @@ public class listaMateriales extends HttpServlet {
 					
 					out.println("<hr>");
 						
+					
+					
 					out.println("<div class='container-wrap'>");
 						out.println("<h1>Our materials</h1>");
 						out.println("<table align='center'>");
@@ -98,6 +100,7 @@ public class listaMateriales extends HttpServlet {
 						out.println("<th><h3>PRICE</h3></th>");
 						out.println("<th><h3>CATEGORY</h3></th>");
 						out.println("<th><h3>STOCK</h3></th>");
+						out.println("<th><h3>AMOUNT</h3></th>");
 						out.println("<th><h3>ADD TO CART</h3></th>");
 						//Listado de materiales con su codigo de categoria
 						for(Categoria categoria: categorias) {
@@ -108,7 +111,8 @@ public class listaMateriales extends HttpServlet {
 								out.println("<td>"+ material.getPrecio() +"</td>");
 								out.println("<td>"+ material.getCategoria().getNombre() + " - " + material.getCategoria().getCodigo() +"</td>");
 								out.println("<td>"+ material.getStock() +"</td>");
-								out.println("<td><button onclick=\"location.href='addToCarrito.jsp?id="+ material.getCodigo() +"'\">Add</button></td></tr>");
+								out.println("<td><input name='cantidad' id='cantidad' type='number' min='0' placeholder='Amount'></td>");
+								out.println("<td><input type='submit' value='Add' onclick=\"location.href='addToCarrito.jsp?id="+ material.getCodigo() +"'\"></td></tr>");
 							}
 						}
 						

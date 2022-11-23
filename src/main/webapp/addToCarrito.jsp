@@ -33,6 +33,8 @@
 			Material material = daoMaterial.getMaterial(idMaterial);
 			
 			if(idMaterial!=null && material.getStock()>0){
+				
+				
 					UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),material.getStock());
 					carrito.addListaDeItemDelCarrito(itemCarrito);
 					

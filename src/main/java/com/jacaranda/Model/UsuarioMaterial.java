@@ -16,7 +16,7 @@ public class UsuarioMaterial {
 	@Id
 	@ManyToOne
 	@JoinColumn(
-			name="usuario",
+			name="Usuario_Id",
 			insertable = false, updatable = false
 			)
 	private Usuario usuario;
@@ -24,7 +24,7 @@ public class UsuarioMaterial {
 	@Id
 	@ManyToOne
 	@JoinColumn(
-			name="codigo",
+			name="Material_Id",
 			insertable = false, updatable = false
 			)
 	private Material material;

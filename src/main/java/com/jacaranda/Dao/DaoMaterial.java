@@ -57,5 +57,22 @@ public class DaoMaterial {
 		// --------------------------------
 		session.getTransaction().commit();
 		return added;
-}
+	}
+	
+	public boolean updateMaterial(Material material) {
+		boolean added = false;
+		try {
+			Material newMaterial = session.get(Material.class, material.getCodigo());
+			newMaterial.setStock(material.getStock());
+			session.getTransaction().begin();
+		// Aqui va la transacci�n a realizar
+			session.update(newMaterial);
+		} 
+		catch (Exception e) {
+			session.getTransaction().rollback();
+		}
+		// --------------------------------
+		session.getTransaction().commit();
+		return added;
+	}
 }

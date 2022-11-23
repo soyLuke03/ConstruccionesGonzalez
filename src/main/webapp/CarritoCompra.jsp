@@ -48,6 +48,7 @@ try{
 							<th><h3>Price</h3></th>
 							<th><h3>Material name</h3></th>
 							<th><h3>Description</h3></th>
+							<th><h3>Amount</h3></th>
 							<th><h3>Date</h3></th>
 						
 							<%
@@ -66,6 +67,7 @@ try{
 									out.println("<td>"+ itemCarrito.getPrecio() +"</td>");
 									out.println("<td>"+ itemCarrito.getMaterial().getNombre() +"</td>");
 									out.println("<td>"+ itemCarrito.getMaterial().getDescripcion() +"</td>");
+									out.println("<td>"+ itemCarrito.getCantidad()+"</td>");
 									out.println("<td>"+ itemCarrito.getFecha().getDayOfMonth() + " - "
 													  + itemCarrito.getFecha().getMonth() + "  /  "
 													  + itemCarrito.getFecha().getHour() + ":"
