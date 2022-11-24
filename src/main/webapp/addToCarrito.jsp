@@ -19,6 +19,10 @@
 		DaoUser daoUser = new DaoUser();
 		DaoMaterial daoMaterial = new DaoMaterial();
 		
+		Integer cantidad = Integer.valueOf(request.getParameter("cantidad"));
+		Integer idMaterial = Integer.valueOf(request.getParameter("id"));
+		
+		
 		session = request.getSession();
 		String userName = (String) session.getAttribute("usuario");
 		String login = (String) session.getAttribute("login");
@@ -29,13 +33,14 @@
 		
 		if(carrito!=null){
 			// Creamos el material a partir del id de la URL
-			Integer idMaterial = Integer.valueOf(request.getParameter("id"));
+			
 			Material material = daoMaterial.getMaterial(idMaterial);
 			
-			if(idMaterial!=null && material.getStock()>0){
+			if(idMaterial!=null && material.getStock()>0 && cantidad<=material.getStock()){
 				
 				
-					UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),material.getStock());
+					UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),cantidad);
+
 					carrito.addListaDeItemDelCarrito(itemCarrito);
 					
 					response.sendRedirect("listaMateriales");
@@ -51,18 +56,19 @@
 			CarritoDeLaCompra newCarrito = new CarritoDeLaCompra();
 			
 			// Creamos el material a partir del id de la URL
-			Integer idMaterial = Integer.valueOf(request.getParameter("id"));
 			Material material = daoMaterial.getMaterial(idMaterial);
 			
-			if(idMaterial!=null && material.getStock()>0){
+			if(idMaterial!=null && material.getStock()>0 && cantidad<=material.getStock()){
 				
 				session.setAttribute("carrito", newCarrito);
 				
 				carrito = (CarritoDeLaCompra) session.getAttribute("carrito");
 				
-				UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),material.getStock());
+				UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),cantidad);
+				
 				
 				carrito.addListaDeItemDelCarrito(itemCarrito);
+				
 				
 				
 				response.sendRedirect("listaMateriales");

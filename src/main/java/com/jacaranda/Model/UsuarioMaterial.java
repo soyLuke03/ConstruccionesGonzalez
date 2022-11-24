@@ -71,8 +71,7 @@ public class UsuarioMaterial {
 		if (getClass() != obj.getClass())
 			return false;
 		UsuarioMaterial other = (UsuarioMaterial) obj;
-		return Objects.equals(cantidad, other.cantidad) && Objects.equals(fecha, other.fecha)
-				&& Objects.equals(material, other.material) && Objects.equals(precio, other.precio)
+		return  Objects.equals(fecha, other.fecha) && Objects.equals(material, other.material) && Objects.equals(precio, other.precio)
 				&& Objects.equals(usuario, other.usuario);
 	}
 

@@ -70,7 +70,7 @@ public class listaMateriales extends HttpServlet {
 							if(user.getAdmin()==1) {
 								out.println("<button onclick=\"location.href='RegisterMaterial.jsp'\">Add stuff</button>");
 							}
-							
+							out.println("<button onclick=\"location.href='VerCompras.jsp'\">Check your stuff</button>");
 						out.println("</div>");
 						
 						out.println("<div class='titulo'>");
@@ -91,6 +91,7 @@ public class listaMateriales extends HttpServlet {
 					
 					out.println("<div class='container-wrap'>");
 						out.println("<h1>Our materials</h1>");
+
 						out.println("<table align='center'>");
 						
 						
@@ -105,26 +106,32 @@ public class listaMateriales extends HttpServlet {
 						//Listado de materiales con su codigo de categoria
 						for(Categoria categoria: categorias) {
 							for(Material material: categoria.getMateriales()) {
-								out.println("<tr><td>"+ material.getCodigo() +"</td>");
+								
+								out.println("<form method='GET' action='addToCarrito.jsp'>");
+								out.println("<tr><td>"+ material.getCodigo()+ "<input type='hidden' name='id' id='id' value='"+ material.getCodigo()+"'>" +"</td>");
 								out.println("<td>"+ material.getNombre() +"</td>");
 								out.println("<td>"+ material.getDescripcion() +"</td>");
 								out.println("<td>"+ material.getPrecio() +"</td>");
 								out.println("<td>"+ material.getCategoria().getNombre() + " - " + material.getCategoria().getCodigo() +"</td>");
 								out.println("<td>"+ material.getStock() +"</td>");
-								out.println("<td><input name='cantidad' id='cantidad' type='number' min='0' placeholder='Amount'></td>");
-								out.println("<td><input type='submit' value='Add' onclick=\"location.href='addToCarrito.jsp?id="+ material.getCodigo() +"'\"></td></tr>");
+								out.println("<td><input name='cantidad' id='cantidad' type='number' min='0' value=1 placeholder='Amount'></td>");
+								out.println("<td><input type='submit' value='Add'></td></tr>");
+								out.println("</form>");
+								
 							}
 						}
 						
 						
 						
 						out.println("</table>");
-					out.println("</div>");
+					
+						out.println("</div>");
 					
 					out.println("</body>");
 					out.println("</html>");
 				} 
 				catch (Exception e) {
+					System.out.println("[ERROR al enviar formulario]");
 					response.sendRedirect("./errorPages/Error.jsp");
 				}
 				}else {
@@ -133,6 +140,7 @@ public class listaMateriales extends HttpServlet {
 				
 			}
 		catch (Exception e) {
+			System.out.println("[ERROR al enviar formulario]");
 			response.sendRedirect("./errorPages/Error.jsp");
 		}
 		

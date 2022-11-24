@@ -21,6 +21,18 @@ public class CarritoDeLaCompra {
 		return listaDeUsuarioMaterial;
 	}
 
+	public Boolean isInList(UsuarioMaterial item) {
+		Boolean resultado = false;
+		
+		for(UsuarioMaterial itemList : getListaDeItemDelCarrito()) {
+			if(itemList.equals(item)) {
+				resultado = true;
+			}
+		}
+		
+		return resultado;
+	}
+	
 	public void addListaDeItemDelCarrito(UsuarioMaterial usuarioMaterial) {
 		if(listaDeUsuarioMaterial!=null) {
 			

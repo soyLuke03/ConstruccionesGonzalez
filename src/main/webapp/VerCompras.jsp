@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="com.jacaranda.Comparators.OrderItemByDate"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.jacaranda.Dao.DaoCarrito"%>
 <%@page import="com.jacaranda.Model.UsuarioMaterial"%>
 <%@page import="com.jacaranda.Model.CarritoDeLaCompra"%>
 <%@page import="com.jacaranda.Model.Usuario"%>
@@ -14,22 +18,21 @@
 <body>
 <%
 try{
-	
-	DaoUser daoUser = new DaoUser();
+	DaoUser daoUser = new DaoUser();	
+	DaoCarrito daoCarrito = new DaoCarrito();
+
 	
 	session = request.getSession();
 	String userName = (String) session.getAttribute("usuario");
 	String login = (String) session.getAttribute("login");
-	CarritoDeLaCompra carrito = (CarritoDeLaCompra) session.getAttribute("carrito");
 		
 	Usuario user = daoUser.getUsuario(userName);
+	
 	if(userName != null && login !=null) {
 %>				
 					<div class="header-container">
 						<div class='foto'>
 							<img src='assets/fotoPrincipal.png'></img>
-							<button onclick="location.href='BuyNow.jsp'">BUY NOW!!</button>
-							<button onclick="location.href='CarritoCompra.jsp?vaciar=true'">Empty shopping cart</button>
 						</div>
 						<div class='titulo'>
 							<img src='assets/fotoMedio.png' class='titulo'></img>
@@ -45,37 +48,32 @@ try{
 					<div class="container-wrap">
 						<table align="center">
 							<th><h3>Name</h3></th>
-							<th><h3>Price</h3></th>
+							<th><h3>Price per Unit</h3></th>
 							<th><h3>Material name</h3></th>
 							<th><h3>Description</h3></th>
 							<th><h3>Amount</h3></th>
 							<th><h3>Date</h3></th>
 						
-							<%
-							Boolean vaciar = Boolean.valueOf(request.getParameter("vaciar"));
-							
-							if(vaciar == true){
-								carrito.vaciarListaDeItemDelCarrito();
-								carrito = null;
-							}
-							
-							
-							if(carrito != null && carrito.getListaDeItemDelCarrito().size() != 0){
-								for(UsuarioMaterial itemCarrito : carrito.getListaDeItemDelCarrito()){
-									out.println("<tr>");
-									out.println("<td>"+ itemCarrito.getUsuario().getNombre() +"</td>");
-									out.println("<td>"+ itemCarrito.getPrecio() +"</td>");
-									out.println("<td>"+ itemCarrito.getMaterial().getNombre() +"</td>");
-									out.println("<td>"+ itemCarrito.getMaterial().getDescripcion() +"</td>");
-									out.println("<td>"+ itemCarrito.getCantidad()+"</td>");
-									out.println("<td>"+ itemCarrito.getFecha().getDayOfMonth() + " - "
-													  + itemCarrito.getFecha().getMonth() + "  /  "
-													  + itemCarrito.getFecha().getHour() + ":"
-													  + itemCarrito.getFecha().getMinute() +"</td>");
-									out.println("</tr>");
+							<%		
+							System.out.println("ERROR");
+							if(daoCarrito.getItemList().size()!=0){
+								for(UsuarioMaterial item : daoCarrito.getUserPurchases(user)){
+										out.println("<tr>");
+										out.println("<td>"+item.getUsuario().getNombre()+"</td>");
+										out.println("<td>"+item.getMaterial().getPrecio()+"</td>");
+										out.println("<td>"+item.getMaterial().getNombre()+"</td>");
+										out.println("<td>"+item.getMaterial().getDescripcion()+"</td>");
+										out.println("<td>"+item.getCantidad()+"</td>");
+										out.println("<td>"+ item.getFecha().getDayOfMonth() + " - "
+												  + item.getFecha().getMonth() + "  /  "
+												  + item.getFecha().getHour() + ":"
+												  + item.getFecha().getMinute() + ":"
+												  + item.getFecha().getSecond() + "</td>");
+										out.println("</tr>");									
 								}
+								
 							}else{
-								out.println("<h1 align='center'>You do not have any item on the shopping cart. Go to buy something!!</h1>");
+								out.println("<h1 align='center'>You do not have any item bought on our shop. Go to buy something!!</h1>");
 							}
 							%>
 						</table>
