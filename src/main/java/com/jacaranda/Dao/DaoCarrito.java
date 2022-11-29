@@ -5,8 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import com.jacaranda.Comparators.OrderItemByDate;
-import com.jacaranda.Model.Material;
 import com.jacaranda.Model.Usuario;
 import com.jacaranda.Model.UsuarioMaterial;
 

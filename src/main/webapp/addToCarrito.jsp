@@ -33,17 +33,25 @@
 		
 		if(carrito!=null){
 			// Creamos el material a partir del id de la URL
-			
 			Material material = daoMaterial.getMaterial(idMaterial);
 			
-			if(idMaterial!=null && material.getStock()>0 && cantidad<=material.getStock()){
+			if(idMaterial!=null && material.getStock()>0 && cantidad<=material.getStock()){	
+				//Creamos el item y lo metemos en el carrito
+				UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),cantidad);
+				
+			    Integer pos = carrito.getListaDeItemDelCarrito().indexOf(itemCarrito);
+			    if(pos!=-1){
+			    	UsuarioMaterial newItem = carrito.getListaDeItemDelCarrito().get(pos);
+			    	newItem.setCantidad(cantidad + newItem.getCantidad());
+			    	
+			    	
+			    }else{
+			    	carrito.addListaDeItemDelCarrito(itemCarrito);
+			    }
 				
 				
-					UsuarioMaterial itemCarrito = new UsuarioMaterial(user, material, LocalDateTime.now(),material.getPrecio(),cantidad);
-
-					carrito.addListaDeItemDelCarrito(itemCarrito);
 					
-					response.sendRedirect("listaMateriales");
+				response.sendRedirect("listaMateriales");
 			}
 			else{
 				response.sendRedirect("./errorPages/ErrorStock.jsp");

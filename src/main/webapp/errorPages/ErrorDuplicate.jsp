@@ -14,6 +14,7 @@
 	                        
                             <h1>DUPLICATE PURCHASE</h1>
                             <h3>Are you trying to buy the same item twice?</h3>
+                            <p>For a secure process, your shopping cart has been cleared</p>
                             <a href="../listaMateriales.jsp">Return to shop</a>
                 		
                    </fieldset>

@@ -25,12 +25,16 @@ public class CarritoDeLaCompra {
 		Boolean resultado = false;
 		
 		for(UsuarioMaterial itemList : getListaDeItemDelCarrito()) {
-			if(itemList.equals(item)) {
+			if (itemList.getMaterial()==item.getMaterial() && itemList.getUsuario()==item.getUsuario()) {
 				resultado = true;
 			}
 		}
 		
 		return resultado;
+	}
+	
+	public void deleteFromCart(UsuarioMaterial item) {
+		listaDeUsuarioMaterial.remove(item);
 	}
 	
 	public void addListaDeItemDelCarrito(UsuarioMaterial usuarioMaterial) {

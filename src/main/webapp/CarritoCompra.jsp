@@ -29,7 +29,7 @@ try{
 						<div class='foto'>
 							<img src='assets/fotoPrincipal.png'></img>
 							<button onclick="location.href='BuyNow.jsp'">BUY NOW!!</button>
-							<button onclick="location.href='CarritoCompra.jsp?vaciar=true'">Empty shopping cart</button>
+							<button onclick="location.href='CarritoCompra.jsp?vaciar=true'">Clear shopping cart</button>
 						</div>
 						<div class='titulo'>
 							<img src='assets/fotoMedio.png' class='titulo'></img>
@@ -55,8 +55,10 @@ try{
 							Boolean vaciar = Boolean.valueOf(request.getParameter("vaciar"));
 							
 							if(vaciar == true){
-								carrito.vaciarListaDeItemDelCarrito();
-								carrito = null;
+								if(carrito!=null){
+									carrito.vaciarListaDeItemDelCarrito();
+									carrito = null;
+								}
 							}
 							
 							

@@ -59,8 +59,10 @@ public class UsuarioMaterial {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cantidad, fecha, material, precio, usuario);
+		return Objects.hash(material, usuario);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -71,7 +73,7 @@ public class UsuarioMaterial {
 		if (getClass() != obj.getClass())
 			return false;
 		UsuarioMaterial other = (UsuarioMaterial) obj;
-		return  Objects.equals(fecha, other.fecha) && Objects.equals(material, other.material) && Objects.equals(precio, other.precio)
+		return Objects.equals(material, other.material) 
 				&& Objects.equals(usuario, other.usuario);
 	}
 

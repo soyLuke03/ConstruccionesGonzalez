@@ -23,16 +23,27 @@ try{
 
 	if (carrito.getListaDeItemDelCarrito().size()!=0){
 		for(UsuarioMaterial itemCarrito : carrito.getListaDeItemDelCarrito()){
-			daoCarrito.addItem(itemCarrito);
-			
-			
 			Material material = itemCarrito.getMaterial();
-			material.setStock(material.getStock()-itemCarrito.getCantidad());
+			
+			Integer finalAmount = itemCarrito.getMaterial().getStock()-itemCarrito.getCantidad();
+			if(finalAmount<0){
+				itemCarrito.setCantidad(itemCarrito.getMaterial().getStock());
+				material.setStock(0);
+			}else{
+				material.setStock(material.getStock()-itemCarrito.getCantidad());	
+			}
+			
+			daoCarrito.addItem(itemCarrito);
 			daoMaterial.updateMaterial(material);
+			
 		}
 		carrito.vaciarListaDeItemDelCarrito();
+		session.removeAttribute("carrito");
 	}
+	
 	response.sendRedirect("listaMateriales");
+	
+
 }catch(Exception e){
 	response.sendRedirect("./errorPages/Error.jsp");
 }
