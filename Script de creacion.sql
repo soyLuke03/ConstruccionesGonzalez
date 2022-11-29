@@ -1,11 +1,9 @@
-Create database tiendaVirtual;
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysqlDawes:3306
--- Tiempo de generación: 09-11-2022 a las 08:37:23
+-- Tiempo de generación: 29-11-2022 a las 16:15:57
 -- Versión del servidor: 5.7.22
 -- Versión de PHP: 8.0.19
 
@@ -29,7 +27,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE tiendaVirtual.categorias (
+CREATE TABLE `categorias` (
   `codigo` int(8) NOT NULL,
   `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `descripcion` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL
@@ -39,7 +37,7 @@ CREATE TABLE tiendaVirtual.categorias (
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO tiendaVirtual.categorias (`codigo`, `nombre`, `descripcion`) VALUES
+INSERT INTO `categorias` (`codigo`, `nombre`, `descripcion`) VALUES
 (1, 'Curb & Gutter', '11-660 - Observatory Equipment'),
 (2, 'Structural and Misc Steel (Fabrication)', '2-362 - Termite Control'),
 (3, 'RF Shielding', '15-900 - HVAC Instruments and Controls'),
@@ -144,135 +142,138 @@ INSERT INTO tiendaVirtual.categorias (`codigo`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Compra`
---
-
-CREATE TABLE tiendaVirtual.Compra (
-  `cantidad` int(10) NOT NULL,
-  `precio` int(10) NOT NULL,
-  `fechaCompra` date NOT NULL,
-  `nombreUsuario` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `idMaterial` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `materiales`
 --
 
-CREATE TABLE tiendaVirtual.materiales (
+CREATE TABLE `materiales` (
   `codigo` int(8) NOT NULL,
   `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `descripcion` varchar(150) COLLATE utf8mb4_spanish_ci NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `cod_categoria` int(8) NOT NULL
+  `cod_categoria_codigo` int(8) NOT NULL,
+  `stock` int(30) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `materiales`
 --
 
-INSERT INTO tiendaVirtual.materiales (`codigo`, `nombre`, `descripcion`, `precio`, `cod_categoria`) VALUES
-(0, 'Compactor', 'Roofing (Metal)', '5953.49', 49),
-(2, 'Compactor', 'Curb & Gutter', '32607.85', 62),
-(3, 'Grader', 'Ornamental Railings', '10577.70', 57),
-(4, 'Dump Truck', 'Wall Protection', '41977.19', 65),
-(5, 'Dragline', 'Granite Surfaces', '2994.77', 59),
-(6, 'Dump Truck', 'Temp Fencing, Decorative Fencing and Gates', '36423.97', 100),
-(7, 'Dump Truck', 'Roofing (Asphalt)', '44678.30', 70),
-(8, 'Dump Truck', 'Retaining Wall and Brick Pavers', '30593.32', 36),
-(9, 'Excavator', 'Electrical and Fire Alarm', '11606.04', 31),
-(16, 'Excavator', 'Soft Flooring and Base', '5766.59', 74),
-(18, 'Grader', 'Roofing (Asphalt)', '44063.76', 7),
-(32, 'Dump Truck', 'Roofing (Asphalt)', '29454.25', 57),
-(36, 'Grader', 'Site Furnishings', '48335.90', 91),
-(42, 'Grader', 'Fire Sprinkler System', '7452.53', 83),
-(45, 'Scraper', 'Elevator', '39693.41', 46),
-(52, 'Compactor', 'Marlite Panels (FED)', '24215.03', 47),
-(53, 'Scraper', 'Doors, Frames & Hardware', '7861.12', 34),
-(55, 'Excavator', 'RF Shielding', '26621.76', 55),
-(59, 'Scraper', 'Rebar & Wire Mesh Install', '32698.95', 21),
-(61, 'Dump Truck', 'EIFS', '28818.38', 21),
-(65, 'Excavator', 'Electrical and Fire Alarm', '20198.98', 10),
-(69, 'Compactor', 'Retaining Wall and Brick Pavers', '3500.69', 10),
-(84, 'Scraper', 'Electrical', '29559.90', 14),
-(91, 'Backhoe', 'Site Furnishings', '34627.73', 58),
-(94, 'Backhoe', 'Termite Control', '43988.14', 81),
-(97, 'Trencher', 'Doors, Frames & Hardware', '15941.73', 57),
-(98, 'Skid-Steer', 'Sitework & Site Utilities', '41778.80', 40),
-(122, 'Grader', 'Plumbing & Medical Gas', '33361.33', 71),
-(143, 'Dump Truck', 'Termite Control', '20427.14', 78),
-(165, 'Skid-Steer', 'Casework', '26079.46', 27),
-(261, 'Trencher', 'Landscaping & Irrigation', '11104.51', 16),
-(366, 'Dump Truck', 'Ornamental Railings', '46108.95', 22),
-(388, 'Scraper', 'Electrical and Fire Alarm', '25523.83', 34),
-(389, 'Skid-Steer', 'Epoxy Flooring', '45327.97', 38),
-(431, 'Crawler', 'Glass & Glazing', '26530.66', 53),
-(465, 'Crawler', 'Overhead Doors', '9374.16', 47),
-(480, 'Dump Truck', 'Fire Protection', '47729.87', 10),
-(498, 'Scraper', 'Site Furnishings', '30906.17', 83),
-(526, 'Dump Truck', 'Epoxy Flooring', '366.75', 55),
-(527, 'Crawler', 'Masonry & Precast', '35646.46', 63),
-(535, 'Scraper', 'Marlite Panels (FED)', '37749.94', 67),
-(730, 'Scraper', 'Drywall & Acoustical (MOB)', '18182.68', 9),
-(752, 'Excavator', 'Granite Surfaces', '18242.18', 54),
-(791, 'Skid-Steer', 'Temp Fencing, Decorative Fencing and Gates', '28581.88', 83),
-(812, 'Excavator', 'Landscaping & Irrigation', '14971.77', 60),
-(832, 'Trencher', 'Marlite Panels (FED)', '6032.28', 62),
-(872, 'Trencher', 'Masonry & Precast', '10583.23', 92),
-(874, 'Skid-Steer', 'Masonry', '26589.86', 77),
-(878, 'Excavator', 'EIFS', '34165.82', 81),
-(888, 'Compactor', 'Fire Sprinkler System', '13715.67', 30),
-(901, 'Crawler', 'Rebar & Wire Mesh Install', '15742.82', 74),
-(989, 'Bulldozer', 'Asphalt Paving', '37821.82', 27),
-(1186, 'Grader', 'Granite Surfaces', '46027.06', 92),
-(1336, 'Bulldozer', 'Overhead Doors', '15068.83', 75),
-(1473, 'Scraper', 'Temp Fencing, Decorative Fencing and Gates', '19505.04', 60),
-(1755, 'Excavator', 'Soft Flooring and Base', '39575.05', 10),
-(2345, 'Bulldozer', 'Hard Tile & Stone', '4169.80', 39),
-(2934, 'Crawler', 'RF Shielding', '5760.93', 18),
-(3231, 'Dump Truck', 'Construction Clean and Final Clean', '11442.04', 64),
-(3241, 'Trencher', 'Wall Protection', '18636.15', 11),
-(3862, 'Compactor', 'Construction Clean and Final Clean', '31146.50', 99),
-(5601, 'Crawler', 'Soft Flooring and Base', '43873.50', 35),
-(5906, 'Crawler', 'Electrical and Fire Alarm', '36082.41', 25),
-(5998, 'Dragline', 'Landscaping & Irrigation', '35930.04', 2),
-(6208, 'Backhoe', 'Soft Flooring and Base', '41007.07', 30),
-(6270, 'Dragline', 'Plumbing & Medical Gas', '15398.65', 5),
-(6639, 'Excavator', 'Drilled Shafts', '16615.40', 38),
-(6702, 'Bulldozer', 'Asphalt Paving', '45203.07', 90),
-(6709, 'Bulldozer', 'Rebar & Wire Mesh Install', '2975.00', 3),
-(7091, 'Trencher', 'Elevator', '17112.00', 61),
-(7633, 'Backhoe', 'Fire Protection', '37424.66', 36),
-(8418, 'Crawler', 'Glass & Glazing', '6859.22', 17),
-(8837, 'Scraper', 'Drilled Shafts', '21080.77', 16),
-(9009, 'Bulldozer', 'Fire Sprinkler System', '3633.48', 38),
-(9021, 'Dragline', 'Masonry & Precast', '32172.06', 8),
-(9446, 'Scraper', 'Temp Fencing, Decorative Fencing and Gates', '31110.60', 57),
-(9507, 'Dump Truck', 'Doors, Frames & Hardware', '11083.91', 84),
-(9523, 'Dump Truck', 'Prefabricated Aluminum Metal Canopies', '8184.14', 37),
-(10690, 'Crawler', 'Roofing (Metal)', '34898.20', 8),
-(13315, 'Backhoe', 'Electrical and Fire Alarm', '45388.35', 53),
-(14412, 'Dump Truck', 'Marlite Panels (FED)', '23308.78', 21),
-(23500, 'Scraper', 'Soft Flooring and Base', '25151.98', 80),
-(28142, 'Compactor', 'Elevator', '41315.17', 93),
-(30390, 'Backhoe', 'Structural and Misc Steel (Fabrication)', '15567.86', 91),
-(37606, 'Grader', 'Temp Fencing, Decorative Fencing and Gates', '36220.13', 52),
-(45116, 'Skid-Steer', 'Plumbing & Medical Gas', '27875.33', 7),
-(50359, 'Backhoe', 'Plumbing & Medical Gas', '2525.39', 30),
-(53630, 'Dragline', 'Soft Flooring and Base', '30485.15', 74),
-(54654, 'Backhoe', 'Masonry & Precast', '6784.83', 76),
-(56085, 'Compactor', 'Retaining Wall and Brick Pavers', '42661.14', 80),
-(68250, 'Dump Truck', 'Overhead Doors', '305.81', 24),
-(69693, 'Compactor', 'Termite Control', '44664.97', 77),
-(78248, 'Compactor', 'Wall Protection', '18824.67', 21),
-(78768, 'Dragline', 'Glass & Glazing', '24553.76', 31),
-(88090, 'Crawler', 'Roofing (Asphalt)', '33256.25', 36),
-(88533, 'Compactor', 'Curb & Gutter', '27004.73', 29),
-(93790, 'Bulldozer', 'Overhead Doors', '19543.66', 22),
-(93912, 'Backhoe', 'Drywall & Acoustical (FED)', '41537.90', 61),
-(97506, 'Dump Truck', 'Framing (Steel)', '18680.47', 64);
+INSERT INTO `materiales` (`codigo`, `nombre`, `descripcion`, `precio`, `cod_categoria_codigo`, `stock`) VALUES
+(16, 'Excavator', 'Soft Flooring and Base', '5766.59', 74, 1000),
+(18, 'Grader', 'Roofing (Asphalt)', '44063.76', 7, 1000),
+(32, 'Dump Truck', 'Roofing (Asphalt)', '29454.25', 57, 1000),
+(36, 'Grader', 'Site Furnishings', '48335.90', 91, 1000),
+(42, 'Grader', 'Fire Sprinkler System', '7452.53', 83, 1000),
+(45, 'Scraper', 'Elevator', '39693.41', 46, 1000),
+(52, 'Compactor', 'Marlite Panels (FED)', '24215.03', 47, 1000),
+(53, 'Scraper', 'Doors, Frames & Hardware', '7861.12', 34, 1000),
+(55, 'Excavator', 'RF Shielding', '26621.76', 55, 1000),
+(59, 'Scraper', 'Rebar & Wire Mesh Install', '32698.95', 21, 1000),
+(61, 'Dump Truck', 'EIFS', '28818.38', 21, 1000),
+(65, 'Excavator', 'Electrical and Fire Alarm', '20198.98', 10, 1000),
+(69, 'Compactor', 'Retaining Wall and Brick Pavers', '3500.69', 10, 1000),
+(84, 'Scraper', 'Electrical', '29559.90', 14, 1000),
+(91, 'Backhoe', 'Site Furnishings', '34627.73', 58, 1000),
+(94, 'Backhoe', 'Termite Control', '43988.14', 81, 1000),
+(97, 'Trencher', 'Doors, Frames & Hardware', '15941.73', 57, 1000),
+(98, 'Skid-Steer', 'Sitework & Site Utilities', '41778.80', 40, 1000),
+(122, 'Grader', 'Plumbing & Medical Gas', '33361.33', 71, 1000),
+(143, 'Dump Truck', 'Termite Control', '20427.14', 78, 1000),
+(165, 'Skid-Steer', 'Casework', '26079.46', 27, 1000),
+(261, 'Trencher', 'Landscaping & Irrigation', '11104.51', 16, 1000),
+(366, 'Dump Truck', 'Ornamental Railings', '46108.95', 22, 1000),
+(388, 'Scraper', 'Electrical and Fire Alarm', '25523.83', 34, 1000),
+(389, 'Skid-Steer', 'Epoxy Flooring', '45327.97', 38, 1000),
+(412, 'Bricks', 'Bricks made of clay', '0.79', 2, 1000),
+(431, 'Crawler', 'Glass & Glazing', '26530.66', 53, 1000),
+(465, 'Crawler', 'Overhead Doors', '9374.16', 47, 1000),
+(480, 'Dump Truck', 'Fire Protection', '47729.87', 10, 1000),
+(498, 'Scraper', 'Site Furnishings', '30906.17', 83, 1000),
+(526, 'Dump Truck', 'Epoxy Flooring', '366.75', 55, 1000),
+(527, 'Crawler', 'Masonry & Precast', '35646.46', 63, 1000),
+(535, 'Scraper', 'Marlite Panels (FED)', '37749.94', 67, 1000),
+(730, 'Scraper', 'Drywall & Acoustical (MOB)', '18182.68', 9, 1000),
+(752, 'Excavator', 'Granite Surfaces', '18242.18', 54, 1000),
+(791, 'Skid-Steer', 'Temp Fencing, Decorative Fencing and Gates', '28581.88', 83, 1000),
+(812, 'Excavator', 'Landscaping & Irrigation', '14971.77', 60, 1000),
+(832, 'Trencher', 'Marlite Panels (FED)', '6032.28', 62, 1000),
+(872, 'Trencher', 'Masonry & Precast', '10583.23', 92, 1000),
+(874, 'Skid-Steer', 'Masonry', '26589.86', 77, 1000),
+(878, 'Excavator', 'EIFS', '34165.82', 81, 1000),
+(888, 'Compactor', 'Fire Sprinkler System', '13715.67', 30, 1000),
+(901, 'Crawler', 'Rebar & Wire Mesh Install', '15742.82', 74, 1000),
+(989, 'Bulldozer', 'Asphalt Paving', '37821.82', 27, 1000),
+(1186, 'Grader', 'Granite Surfaces', '46027.06', 92, 1000),
+(1336, 'Bulldozer', 'Overhead Doors', '15068.83', 75, 1000),
+(1473, 'Scraper', 'Temp Fencing, Decorative Fencing and Gates', '19505.04', 60, 1000),
+(1755, 'Excavator', 'Soft Flooring and Base', '39575.05', 10, 1000),
+(2345, 'Bulldozer', 'Hard Tile & Stone', '4169.80', 39, 1000),
+(2934, 'Crawler', 'RF Shielding', '5760.93', 18, 1000),
+(3231, 'Dump Truck', 'Construction Clean and Final Clean', '11442.04', 64, 1000),
+(3241, 'Trencher', 'Wall Protection', '18636.15', 11, 1000),
+(3862, 'Compactor', 'Construction Clean and Final Clean', '31146.50', 99, 1000),
+(5601, 'Crawler', 'Soft Flooring and Base', '43873.50', 35, 1000),
+(5906, 'Crawler', 'Electrical and Fire Alarm', '36082.41', 25, 1000),
+(5998, 'Dragline', 'Landscaping & Irrigation', '35930.04', 2, 1000),
+(6208, 'Backhoe', 'Soft Flooring and Base', '41007.07', 30, 1000),
+(6270, 'Dragline', 'Plumbing & Medical Gas', '15398.65', 5, 1000),
+(6639, 'Excavator', 'Drilled Shafts', '16615.40', 38, 1000),
+(6702, 'Bulldozer', 'Asphalt Paving', '45203.07', 90, 1000),
+(6709, 'Bulldozer', 'Rebar & Wire Mesh Install', '2975.00', 3, 1000),
+(7091, 'Trencher', 'Elevator', '17112.00', 61, 1000),
+(7633, 'Backhoe', 'Fire Protection', '37424.66', 36, 1000),
+(8418, 'Crawler', 'Glass & Glazing', '6859.22', 17, 1000),
+(8837, 'Scraper', 'Drilled Shafts', '21080.77', 16, 1000),
+(9009, 'Bulldozer', 'Fire Sprinkler System', '3633.48', 38, 1000),
+(9021, 'Dragline', 'Masonry & Precast', '32172.06', 8, 1000),
+(9446, 'Scraper', 'Temp Fencing, Decorative Fencing and Gates', '31110.60', 57, 1000),
+(9507, 'Dump Truck', 'Doors, Frames & Hardware', '11083.91', 84, 1000),
+(9523, 'Dump Truck', 'Prefabricated Aluminum Metal Canopies', '8184.14', 37, 1000),
+(10690, 'Crawler', 'Roofing (Metal)', '34898.20', 8, 1000),
+(13315, 'Backhoe', 'Electrical and Fire Alarm', '45388.35', 53, 1000),
+(14412, 'Dump Truck', 'Marlite Panels (FED)', '23308.78', 21, 1000),
+(15232, '1', '1', '0.01', 2, 1000),
+(23500, 'Scraper', 'Soft Flooring and Base', '25151.98', 80, 1000),
+(28142, 'Compactor', 'Elevator', '41315.17', 93, 1000),
+(30390, 'Backhoe', 'Structural and Misc Steel (Fabrication)', '15567.86', 91, 1000),
+(37606, 'Grader', 'Temp Fencing, Decorative Fencing and Gates', '36220.13', 52, 1000),
+(45116, 'Skid-Steer', 'Plumbing & Medical Gas', '27875.33', 7, 1000),
+(50359, 'Backhoe', 'Plumbing & Medical Gas', '2525.39', 30, 1000),
+(53630, 'Dragline', 'Soft Flooring and Base', '30485.15', 74, 1000),
+(54654, 'Backhoe', 'Masonry & Precast', '6784.83', 76, 1000),
+(56085, 'Compactor', 'Retaining Wall and Brick Pavers', '42661.14', 80, 1000),
+(68250, 'Dump Truck', 'Overhead Doors', '305.81', 24, 1000),
+(69693, 'Compactor', 'Termite Control', '44664.97', 77, 1000),
+(78248, 'Compactor', 'Wall Protection', '18824.67', 21, 1000),
+(78768, 'Dragline', 'Glass & Glazing', '24553.76', 31, 1000),
+(88090, 'Crawler', 'Roofing (Asphalt)', '33256.25', 36, 1000),
+(88533, 'Compactor', 'Curb & Gutter', '27004.73', 29, 1000),
+(93790, 'Bulldozer', 'Overhead Doors', '19543.66', 22, 1000),
+(93912, 'Backhoe', 'Drywall & Acoustical (FED)', '41537.90', 61, 1000),
+(97506, 'Dump Truck', 'Framing (Steel)', '18680.47', 64, 1000);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `UsuarioMaterial`
+--
+
+CREATE TABLE `UsuarioMaterial` (
+  `Usuario_Id` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Material_Id` int(8) NOT NULL,
+  `Fecha` datetime NOT NULL,
+  `Cantidad` int(30) NOT NULL,
+  `Precio` decimal(50,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `UsuarioMaterial`
+--
+
+INSERT INTO `UsuarioMaterial` (`Usuario_Id`, `Material_Id`, `Fecha`, `Cantidad`, `Precio`) VALUES
+('Antonio', 412, '2022-11-28 09:23:07', 500, '0.79'),
+('Antonio', 412, '2022-11-28 09:28:07', 500, '0.79'),
+('Antonio', 5998, '2022-11-28 09:28:23', 500, '35930.04');
 
 -- --------------------------------------------------------
 
@@ -280,7 +281,7 @@ INSERT INTO tiendaVirtual.materiales (`codigo`, `nombre`, `descripcion`, `precio
 -- Estructura de tabla para la tabla `Usuarios`
 --
 
-CREATE TABLE tiendaVirtual.Usuarios (
+CREATE TABLE `Usuarios` (
   `usuario` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `password` varchar(32) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
@@ -289,8 +290,15 @@ CREATE TABLE tiendaVirtual.Usuarios (
   `genero` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `Usuarios`
+--
 
-INSERT INTO tiendaVirtual.Usuarios (`usuario`, `password`, `admin`, `nombre`, `fechaNacimiento`, `genero`) VALUES ('Antonio', MD5('Gonzalez'), '1', 'Luke', '2003-01-21', 'Hombre');
+INSERT INTO `Usuarios` (`usuario`, `password`, `admin`, `nombre`, `fechaNacimiento`, `genero`) VALUES
+('Antonio', '0f5b2f91cd5952a124b1a03c4f2c4b19', 1, 'Luke', '2003-01-21', 'Hombre'),
+('Luke', 'b21dfb148d20b1febdd8d86417f925c1', 0, 'Luke', '2022-10-31', 'Otro'),
+('Usuario', 'a5ae0861febff1aeefb6d5b759d904a6', 0, 'U', '2022-10-31', 'Hombre');
+
 --
 -- Índices para tablas volcadas
 --
@@ -298,28 +306,28 @@ INSERT INTO tiendaVirtual.Usuarios (`usuario`, `password`, `admin`, `nombre`, `f
 --
 -- Indices de la tabla `categorias`
 --
-ALTER TABLE tiendaVirtual.categorias
+ALTER TABLE `categorias`
   ADD PRIMARY KEY (`codigo`);
-
---
--- Indices de la tabla `Compra`
---
-ALTER TABLE tiendaVirtual.Compra
-  ADD PRIMARY KEY (`idMaterial`,`nombreUsuario`) USING BTREE,
-  ADD UNIQUE KEY `nombreUsuario` (`nombreUsuario`),
-  ADD UNIQUE KEY `idCategoria` (`idMaterial`);
 
 --
 -- Indices de la tabla `materiales`
 --
-ALTER TABLE tiendaVirtual.materiales
+ALTER TABLE `materiales`
   ADD PRIMARY KEY (`codigo`),
-  ADD KEY `cod_categoria` (`cod_categoria`) USING BTREE;
+  ADD KEY `cod_categoria` (`cod_categoria_codigo`) USING BTREE;
+
+--
+-- Indices de la tabla `UsuarioMaterial`
+--
+ALTER TABLE `UsuarioMaterial`
+  ADD PRIMARY KEY (`Usuario_Id`,`Material_Id`,`Fecha`),
+  ADD KEY `FK` (`Usuario_Id`,`Material_Id`),
+  ADD KEY `Material_Id` (`Material_Id`);
 
 --
 -- Indices de la tabla `Usuarios`
 --
-ALTER TABLE tiendaVirtual.Usuarios
+ALTER TABLE `Usuarios`
   ADD PRIMARY KEY (`usuario`),
   ADD KEY `usuario` (`usuario`);
 
@@ -328,22 +336,19 @@ ALTER TABLE tiendaVirtual.Usuarios
 --
 
 --
--- Filtros para la tabla `Compra`
---
-ALTER TABLE tiendaVirtual.Compra
-  ADD CONSTRAINT `Compra_ibfk_1` FOREIGN KEY (`nombreUsuario`) REFERENCES `Usuarios` (`usuario`),
-  ADD CONSTRAINT `Compra_ibfk_2` FOREIGN KEY (`idMaterial`) REFERENCES `materiales` (`codigo`);
-
---
 -- Filtros para la tabla `materiales`
 --
-ALTER TABLE tiendaVirtual.materiales
-  ADD CONSTRAINT `materiales_ibfk_1` FOREIGN KEY (`cod_categoria`) REFERENCES `categorias` (`codigo`);
+ALTER TABLE `materiales`
+  ADD CONSTRAINT `materiales_ibfk_1` FOREIGN KEY (`cod_categoria_codigo`) REFERENCES `categorias` (`codigo`);
+
+--
+-- Filtros para la tabla `UsuarioMaterial`
+--
+ALTER TABLE `UsuarioMaterial`
+  ADD CONSTRAINT `UsuarioMaterial_ibfk_1` FOREIGN KEY (`Material_Id`) REFERENCES `materiales` (`codigo`),
+  ADD CONSTRAINT `UsuarioMaterial_ibfk_2` FOREIGN KEY (`Usuario_Id`) REFERENCES `Usuarios` (`usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-create user 'Gonzalez'@'%' identified by 'Antonio';
-grant all privileges on tiendaVirtual.* to 'Gonzalez'@'%';
